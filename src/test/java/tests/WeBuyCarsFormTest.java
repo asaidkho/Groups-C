@@ -21,6 +21,12 @@ public class WeBuyCarsFormTest extends TestBase {
 		
 		sp.yearInput.sendKeys("2018");
 		
+		
+	
+		
 	}
+	
+	
+
 
 }
