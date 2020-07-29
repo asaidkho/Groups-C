@@ -24,7 +24,7 @@ public class ShopPage extends BasePage {
 		public WebElement byPrice;
 
 		@FindBy(id = "shop-by-lifestyle-commuter")
-		public WebElement makeFilters;
+		public WebElement commuter;
 
 		@FindBy(className = "shop-local-cars-cta kmx-button kmx-button--primary")
 		public WebElement localCars;
