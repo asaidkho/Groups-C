@@ -80,6 +80,16 @@ public class BrowserUtilities {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), seconds);
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(locator)));
     }
+    
+    public static void waitForInvisibility(WebElement element, int seconds) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), seconds);
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.invisibilityOf(element)));
+    }
+    
+    public static void waitForInvisibility(By locator, int seconds) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), seconds);
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.invisibilityOfElementLocated(locator)));
+    }
    
     public static void waitForClickablility(WebElement element, int seconds) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), seconds);

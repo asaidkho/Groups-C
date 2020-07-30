@@ -4,11 +4,13 @@ import static org.testng.Assert.assertTrue;
 
 import java.util.List;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import pages.SellPage;
 import utilities.BrowserUtilities;
@@ -220,7 +222,7 @@ public class SellPageFormTest extends TestBase {
 		
 	}
 	
-	@Test
+	//@Test
 	public void whatToBringTest() {
 		logger = reporter.createTest("What To Bring Form Test");
 		SellPage sp = new SellPage();
@@ -236,6 +238,30 @@ public class SellPageFormTest extends TestBase {
 		sp.buttonWhatToBring.click();
 		
 		assertTrue(sp.popupWhatBringText.isDisplayed());
+	}
+	
+	//@Test
+	public void faqCollapseTest() {
+		
+		logger = reporter.createTest("Testing FAQ Collapse feature");
+		SellPage sp = new SellPage();
+		
+		SoftAssert sa = new SoftAssert();
+		
+		JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();		
+		js.executeScript("window.scrollBy(0, 4500)");
+		
+		for(int i = 0; i<sp.faqs.size(); i++) {
+			sp.faqs.get(i).click();
+			BrowserUtilities.waitForVisibility(sp.faqs_text.get(i), 5);
+			sa.assertTrue(sp.faqs_text.get(i).isDisplayed());
+			sp.faqs.get(i).click();
+			BrowserUtilities.waitForInvisibility(sp.faqs_text.get(i), 5);
+			sa.assertTrue(!sp.faqs_text.get(i).isDisplayed());
+		}
+		
+		sa.assertAll();
+		
 	}
 	
 	
