@@ -40,6 +40,15 @@ public class SellPage extends BasePage{
 	@FindBy(id="appt-personal__next")
 	public WebElement apptPersonalNext;
 	
+	public void fillApptFormPersonal(String fname, String lname, String phone_number, String email) {
+		SellPage sp = new SellPage();
+		
+		sp.apptFname.sendKeys(fname);
+		sp.apptLname.sendKeys(lname);
+		sp.apptPhone.sendKeys(phone_number);
+		sp.apptEmail.sendKeys(email);
+	}
+	
 	
 	
 	//What to bring form elements:
@@ -66,5 +75,9 @@ public class SellPage extends BasePage{
 	
 	@FindBy(xpath="//div[@id='what-to-bring']//button")
 	public WebElement buttonWhatToBring;
+	
+	
+	@FindBy(xpath="//h3[.='What to bring to CarMax']")
+	public WebElement popupWhatBringText;
 	
 }
