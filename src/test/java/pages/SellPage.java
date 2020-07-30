@@ -1,10 +1,15 @@
 package pages;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class SellPage extends BasePage{
 	
+	
+	@FindBy(xpath="//a[.='Change my store']")
+	public WebElement changeStoreLink;
 	
 	// We buy cars form elements:
 	@FindBy(id="widget-year")
@@ -79,5 +84,14 @@ public class SellPage extends BasePage{
 	
 	@FindBy(xpath="//h3[.='What to bring to CarMax']")
 	public WebElement popupWhatBringText;
+	
+	
+	
+	
+	@FindBy(xpath="//div[contains(@id, 'faq-')]/div/div[1]")
+	public List<WebElement> faqs;
+	
+	@FindBy(xpath="//div[contains(@id, 'faq-')]/div/div[3]")
+	public List<WebElement> faqs_text;
 	
 }
