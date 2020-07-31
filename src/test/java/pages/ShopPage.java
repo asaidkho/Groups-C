@@ -7,11 +7,12 @@ public class ShopPage extends BasePage {
 
 		@FindBy(id = "header-mobile-drawer-focus-start")
 		public WebElement shopButton;
-
+		
+		
 		// ShopByType
-		@FindBy(xpath = "[@id=\"shop-by-type__slides-item1\"]")
+		@FindBy (css = "#shop-by-type__slides-item1 > a")
 		public WebElement trucks;
-
+		
 		// shopByBrand
 		@FindBy(xpath = "//*[@id=\"shop-by-brand\"]/div[1]/a[1]")
 		public WebElement toyota;

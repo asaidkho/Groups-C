@@ -13,27 +13,40 @@ import utilities.Driver;
 public class ShopTest extends TestBase{
 
 	
-	@BeforeMethod(alwaysRun = true)
+	/*/@BeforeMethod(alwaysRun = true)
 	public void setUpMethodShopPage() {
 		ShopPage shp = new ShopPage();
 		shp.shopButton.click();
-		driver.manage().deleteAllCookies();
-	}
-
+		driver.manage().deleteAllCookies();//
+	}*/
+	
 	@Test
+    public void shopButton() {
+        logger = reporter.createTest("Test shop button");
+        ShopPage shp = new ShopPage();
+        logger.info("Clicking on Shop button");
+        shp.shopButton.click();
+        assertEquals(driver.getTitle(), "Used Cars for Sale - CarMax");
+    }
+
+
+     
+    @Test
 	public void clickTrucksButton() {
 		logger = reporter.createTest("Verify shop by type : Trucks button");
 		ShopPage shp = new ShopPage();
 		shp.shopButton.click();
+		driver.manage().deleteAllCookies();
 		logger.info("Clicking on Trucks button");
 		shp.trucks.click();
+		driver.manage().deleteAllCookies();
 		logger.info("Verifying the expected text");
-		assertEquals(
-				driver.findElement(By.xpath("//*[@class='refinement-pill--text kmx-typography--body-1']")).getText(),
-				"Pickup Trucks");
-
+		assertTrue(driver.getTitle().contains("Trucks"));
 	}
- ///change
+
+
+
+   
 	@Test
 	public void clickToyotaButton() {
 		logger = reporter.createTest("Verify shop by brand : Toyota button");
@@ -47,7 +60,7 @@ public class ShopTest extends TestBase{
 	}
 
 	@Test
-	public void clickSeeAllButton() {
+	public void clickByPriceFirstRow() {
 		logger = reporter.createTest("Verify Shop by Price: Under $10,00button");
 		ShopPage shp = new ShopPage();
 		shp.shopButton.click();
