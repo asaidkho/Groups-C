@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 public class SellPage extends BasePage{
 	
 	
-	@FindBy(xpath="//a[.='Change my store']")
+	@FindBy(xpath="//a[@href='https://www.carmax.com/stores']")
 	public WebElement changeStoreLink;
 	
 	// We buy cars form elements:
