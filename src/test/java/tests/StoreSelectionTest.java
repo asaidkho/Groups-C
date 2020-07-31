@@ -17,7 +17,9 @@ public class StoreSelectionTest extends TestBase {
 		
 		SellPage sp = new SellPage();
 		sp.sellLink.click();
-		BrowserUtilities.waitFor(2);
+		//BrowserUtilities.waitFor(2);
+		Driver.getDriver().manage().deleteAllCookies();		
+		sp.changeStoreLink.click();
 		
 	}
 	
@@ -28,10 +30,9 @@ public class StoreSelectionTest extends TestBase {
 	
 	@Test
 	public void numberOfStoresTest() {
-		SellPage sp = new SellPage();
-		sp.changeStoreLink.click();
+		SellPage sp = new SellPage();		
 		
-		logger = reporter.createTest("");
+		logger = reporter.createTest("Testing number of stores");
 		StorePage stp = new StorePage();
 		int totalStoreCount = 0;
 		for (int i = 0; i < stp.states.size(); i++) {
