@@ -16,10 +16,7 @@ public class ShopPage extends BasePage {
 		@FindBy(xpath = "//*[@id=\"shop-by-brand\"]/div[1]/a[1]")
 		public WebElement toyota;
 
-		// seeAllButton
-		@FindBy(id = "see-all-brands")
-		public WebElement seeAllButton;
-
+		// shop by price Under $10,000   
 		@FindBy(xpath = "//*[@id=\"shop-by-price\"]/div[1]/div[1]/a[1]/span")
 		public WebElement byPrice;
 
