@@ -13,10 +13,6 @@
     
     </groups>
 
-
-
-
-
 	<packages>
     
     <package name=".*"></package>

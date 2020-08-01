@@ -32,5 +32,15 @@ public abstract class BasePage {
 	
 	@FindBy(xpath="//a[@href='/car-buying-process/maxcare-service-plans']")
 	public WebElement warrantyLink;
+	
+	@FindBy(id="header-my-profile-button")
+	public WebElement profileButton;
+	
+	@FindBy(linkText="Sign In")
+	public WebElement signInButton;
+	
+	@FindBy(linkText="Saved Cars")
+	public WebElement savedCarsButton;
 
+	
 }
