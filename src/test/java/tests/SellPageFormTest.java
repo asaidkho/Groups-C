@@ -27,7 +27,7 @@ public class SellPageFormTest extends TestBase {
 	
 	
 	
-	@Test(dataProvider = "personal-info-positive")
+	@Test(dataProvider = "personal-info-positive", groups="smoke")
 	public void appointmentForm1PositiveTest(String fname, String lname, String phone_number, String email) {
 		
 		logger = reporter.createTest("Positive Schedule Appointment Test");
@@ -53,7 +53,7 @@ public class SellPageFormTest extends TestBase {
 		BrowserUtilities.waitFor(2);	
 	}
 	
-	@Test
+	@Test(groups="smoke")
 	public void whatToBringTest() {
 		logger = reporter.createTest("What To Bring Form Test");
 		SellPage sp = new SellPage();
@@ -71,7 +71,7 @@ public class SellPageFormTest extends TestBase {
 		assertTrue(sp.popupWhatBringText.isDisplayed());
 	}
 	
-	@Test
+	@Test(groups="smoke")
 	public void faqCollapseTest() {
 		
 		logger = reporter.createTest("Testing FAQ Collapse feature");

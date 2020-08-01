@@ -56,7 +56,7 @@ public class Search extends TestBase {
 	}
 
 	//@Test (dataProvider = "file")
-	@Test 
+	@Test(groups="smoke")
 	//public void limitSearchResultsByLocationAndDistance(String model, String make) {
 	public void limitSearchResultsByLocationAndDistance() {
 		logger = reporter.createTest("Limit Search Results by Location and Distance");
@@ -155,7 +155,7 @@ public class Search extends TestBase {
 	}
 
 
-	@Test
+	@Test(groups="smoke")
 	public void searchByColor() {
 		logger = reporter.createTest("Search by color");
 		MainPage mp = new MainPage();
@@ -182,7 +182,7 @@ public class Search extends TestBase {
 		//assertTrue(mp.searchResults.getText().contains("Blue"));
 	}
 
-	@Test
+	@Test(groups="smoke")
 	public void searchCompare() {
 		logger = reporter.createTest("Compare the selected cars produced by search result");
 		MainPage mp = new MainPage();
