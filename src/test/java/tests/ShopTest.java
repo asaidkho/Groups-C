@@ -28,7 +28,7 @@ public class ShopTest extends TestBase {
 		assertEquals(driver.getTitle(), "Used Cars for Sale - CarMax");
 	}
 
-	@Test
+	@Test(groups="smoke")
 	public void clickTrucksButton() {
 		logger = reporter.createTest("Verify shop by type : Trucks button");
 		ShopPage shp = new ShopPage();
@@ -66,7 +66,7 @@ public class ShopTest extends TestBase {
 		logger.info("Verifying the expected text");
 		assertTrue(driver.findElement(By.cssSelector("#title > h1")).getText().contains("Under $10,000"));
 	}
-	@Test
+	@Test(groups="smoke")
 	public void commuterButton() {
 		logger = reporter.createTest("Verify Shop by Lifestyle : Commuter button");
 		ShopPage shp = new ShopPage();
@@ -77,7 +77,7 @@ public class ShopTest extends TestBase {
 		logger.info("Verifying the expected URL");
 		assertTrue(Driver.getDriver().getCurrentUrl().equals("https://www.carmax.com/cars/coupes/hybrids/sedans/bluetooth?mpghighway=30"));
 	}
-	@Test
+	@Test(groups="smoke")
 	public void localCarsButton() {
 		logger = reporter.createTest("Verify See All button");
 		ShopPage shp = new ShopPage();
