@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -113,13 +114,26 @@ public class ShopTest extends TestBase{
 		logger = reporter.createTest("Verify See All button");
 		ShopPage shp = new ShopPage();
 		shp.shopButton.click();
-		
 		logger.info("Clicking Local Cars Button");
+		
+		//System.out.println(shp.localCars.isEnabled());
+		//shp.localCars.isDisplayed();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,3200)");
+		assertTrue(shp.localCars.isDisplayed());
+		assertTrue(shp.localCars.isEnabled());
+		driver.manage().deleteAllCookies();
 		shp.localCars.click();
+		if (shp.locationConformPopUp.isEnabled()) {
+			shp.locationConformPopUp.click();
+		}
 		logger.info("Verifying the expected text");
-		assertEquals(
-				driver.findElement(By.id("search-results-header")).getText(),
-				"Used cars at CarMax Gaithersburg for Sale");
+		//assertEquals(
+		//		driver.findElement(By.id("search-results-header")).getText(),
+		//		"Used cars at CarMax Gaithersburg for Sale");
+		assertTrue(driver.findElement(By.id("search-results-header")).getText().contains("Used cars at CarMax Gaithersburg for Sale"));
 	}
-}
+	
+	}
+
 
