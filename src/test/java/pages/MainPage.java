@@ -5,10 +5,12 @@ import org.openqa.selenium.WebElement;
 
 public class MainPage extends BasePage {
 
-	@FindBy (xpath = "//span[@class='year-make']")
+	//@FindBy (xpath = "//span[@class='year-make']")
+	@FindBy (id= "search-results-header")
 	public WebElement searchResults;
 	
 	@FindBy (id = "zip")
+	//@FindBy (xpath = "//*[@id=\"zip\"]")
 	public WebElement zipCode;
 	
 	//@FindBy (className = "kmx-menu-button kmx-button kmx-button--tertiary")
