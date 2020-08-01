@@ -52,6 +52,7 @@ public class ShopTest extends TestBase{
 		logger = reporter.createTest("Verify shop by brand : Toyota button");
 		ShopPage shp = new ShopPage();
 		shp.shopButton.click();
+		
 		logger.info("Clicking on Toyota button");
 		shp.toyota.click();
 		logger.info("Verifying the expected text");
@@ -59,6 +60,7 @@ public class ShopTest extends TestBase{
 
 	}
 
+	
 	@Test
 	public void clickByPriceFirstRow() {
 		logger = reporter.createTest("Verify Shop by Price: Under $10,00button");
@@ -74,18 +76,37 @@ public class ShopTest extends TestBase{
     
 	}
 
+	
+	@Test
+	public void clickSeeAllButton() {
+		logger = reporter.createTest("Verify Shop by Price: Under $10,00button");
+		ShopPage shp = new ShopPage();
+		shp.shopButton.click();
+		driver.manage().deleteAllCookies();
+		logger.info("Clicking on See All button");
+		shp.byPrice.click();
+		driver.manage().deleteAllCookies();
+		if (shp.locationConformPopUp.isEnabled()) {
+			shp.locationConformPopUp.click();
+		}
+		logger.info("Verifying the expected text");
+		
+		assertTrue(driver.findElement(By.cssSelector("#title > h1")).getText().contains("Under $10,000"));				
+	}
+	
+	
 	@Test
 	public void commuterButton() {
 		logger = reporter.createTest("Verify Shop by Lifestyle : Commuter button");
 		ShopPage shp = new ShopPage();
 		shp.shopButton.click();
-		
+		driver.manage().deleteAllCookies();
 		logger.info("Clicking on Commuter");
 		shp.commuter.click();
 		logger.info("Verifying the expected URL");
 		assertTrue(Driver.getDriver().getCurrentUrl().equals("https://www.carmax.com/cars/coupes/hybrids/sedans/bluetooth?mpghighway=30"));
-	
 	}
+	
 
 	@Test
 	public void localCarsButton() {
@@ -99,9 +120,6 @@ public class ShopTest extends TestBase{
 		assertEquals(
 				driver.findElement(By.id("search-results-header")).getText(),
 				"Used cars at CarMax Gaithersburg for Sale");
-
-		
-		
 	}
 }
 
