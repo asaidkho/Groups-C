@@ -22,13 +22,14 @@ public class LoginTest extends TestBase{
 	public void loginTest1() {
 		logger = reporter.createTest("Login Test 1");
 		
+		logger.info("Logging in..");
 		LoginPage lp = new LoginPage();
-		lp.login();
-		
+		lp.login();		
 		
 		lp.profileButton.click();
 		lp.savedCarsButton.click();
 		
+		logger.info("Verifying that successfully logged in");
 		assertEquals(Driver.getDriver().getTitle(), "Saved Cars | MyCarMax");		
 	}
 	

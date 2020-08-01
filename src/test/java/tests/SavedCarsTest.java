@@ -22,13 +22,17 @@ public class SavedCarsTest extends TestBase{
 		logger = reporter.createTest("Save Car Test");
 		SavedCarsPage scp = new SavedCarsPage();
 		
-		scp.searchBox.sendKeys("2017 Toyota Camry");
+		logger.info("Logged in at this point and searching for 2017 Honda Accord");
+		scp.searchBox.sendKeys("2017 Honda Accord");
 		scp.searchButton.click();
 		
+		logger.info("Saving the first car in the list");
 		new SearchPage().searchedCarsSaveButton.get(0).click();
 		
 		scp.profileButton.click();
 		scp.savedCarsButton.click();
+		
+		logger.info("Verifying that car got successfully saved");
 		
 		
 	}

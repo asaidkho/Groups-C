@@ -25,18 +25,25 @@ public class WarrantyTest extends TestBase {
 		WarrantyPage wp = new WarrantyPage();
 		SoftAssert sa = new SoftAssert();
 		
+		logger.info("Clicking on SUV button");
 		wp.suvButton.click();
 		BrowserUtilities.waitFor(1);
+		logger.info("Validating that the amount changes to the corrent one");
 		sa.assertEquals(wp.estimateMin.getText(), "1,779");
 		
+		logger.info("Clicking on Truck button");
 		wp.truckButton.click();
 		BrowserUtilities.waitFor(1);
+		logger.info("Validating that the amount changes to the corrent one");
 		sa.assertEquals(wp.estimateMin.getText(), "1,449");
 		
+		logger.info("Clicking on Sedan button");
 		wp.sedanButton.click();
 		BrowserUtilities.waitFor(1);
+		logger.info("Validating that the amount changes to the corrent one");
 		sa.assertEquals(wp.estimateMin.getText(), "1,329");
 		
+		logger.info("Applying assert all for soft assertions");
 		sa.assertAll();
 	}
 

@@ -33,8 +33,9 @@ public class SellPageFormTest extends TestBase {
 		logger = reporter.createTest("Positive Schedule Appointment Test");
 		
 		SellPage sp = new SellPage();
+		logger.info("Filling up the form with the data by DataProvider");
 		sp.fillApptFormPersonal(fname, lname, phone_number, email);
-		
+		logger.info("Validating that Next button gets activated");
 		assertTrue(sp.apptPersonalNext.isEnabled());
 		
 		BrowserUtilities.waitFor(2);
@@ -46,8 +47,9 @@ public class SellPageFormTest extends TestBase {
 		logger = reporter.createTest("Negative Schedule Appointment Test");
 		
 		SellPage sp = new SellPage();
+		logger.info("Filling up the form with the data by DataProvider");
 		sp.fillApptFormPersonal(fname, lname, phone_number, email);
-		
+		logger.info("Validating that Next button is not going to get activated");
 		assertTrue(!sp.apptPersonalNext.isEnabled());
 		
 		BrowserUtilities.waitFor(2);	
@@ -57,17 +59,18 @@ public class SellPageFormTest extends TestBase {
 	public void whatToBringTest() {
 		logger = reporter.createTest("What To Bring Form Test");
 		SellPage sp = new SellPage();
-		
+		logger.info("Selecting a state");
 		Select sel = new Select(sp.selectState);
 		List<WebElement> states = sel.getOptions();
 		sel.selectByVisibleText("Alabama");
 		
+		logger.info("selecting radio buttons");
 		sp.radioMakingPaymentsNo.click();
 		sp.radioMultipleTitleOwnersNo.click();
 		sp.radioTitleOwnersCanComeNo.click();
-		
+		logger.info("Submitting the form");
 		sp.buttonWhatToBring.click();
-		
+		logger.info("Validating that popup window with info shows up");
 		assertTrue(sp.popupWhatBringText.isDisplayed());
 	}
 	
@@ -82,6 +85,7 @@ public class SellPageFormTest extends TestBase {
 		JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();		
 		js.executeScript("window.scrollBy(0, 4500)");
 		
+		logger.info("Verifying that all collapse faq answers show up and hide back");
 		for(int i = 0; i<sp.faqs.size(); i++) {
 			sp.faqs.get(i).click();
 			BrowserUtilities.waitForVisibility(sp.faqs_text.get(i), 5);
@@ -91,6 +95,7 @@ public class SellPageFormTest extends TestBase {
 			sa.assertTrue(!sp.faqs_text.get(i).isDisplayed());
 		}
 		
+		logger.info("Doing assert all for soft assertion");
 		sa.assertAll();
 		
 	}
