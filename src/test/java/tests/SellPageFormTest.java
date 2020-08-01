@@ -27,7 +27,7 @@ public class SellPageFormTest extends TestBase {
 	
 	
 	
-	//@Test(dataProvider = "personal-info-positive")
+	@Test(dataProvider = "personal-info-positive")
 	public void appointmentForm1PositiveTest(String fname, String lname, String phone_number, String email) {
 		
 		logger = reporter.createTest("Positive Schedule Appointment Test");
@@ -40,7 +40,7 @@ public class SellPageFormTest extends TestBase {
 		BrowserUtilities.waitFor(2);
 	}
 	
-	//@Test(dataProvider = "personal-info-negative")
+	@Test(dataProvider = "personal-info-negative")
 	public void appointmentForm1NegativeTest(String fname, String lname, String phone_number, String email) {
 		
 		logger = reporter.createTest("Negative Schedule Appointment Test");
@@ -50,186 +50,17 @@ public class SellPageFormTest extends TestBase {
 		
 		assertTrue(!sp.apptPersonalNext.isEnabled());
 		
-		BrowserUtilities.waitFor(2);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		BrowserUtilities.waitFor(2);	
 	}
 	
-	//@Test
+	@Test
 	public void whatToBringTest() {
 		logger = reporter.createTest("What To Bring Form Test");
 		SellPage sp = new SellPage();
 		
 		Select sel = new Select(sp.selectState);
 		List<WebElement> states = sel.getOptions();
-		sel.selectByIndex((int)(Math.random() * states.size()-1));
+		sel.selectByVisibleText("Alabama");
 		
 		sp.radioMakingPaymentsNo.click();
 		sp.radioMultipleTitleOwnersNo.click();
@@ -240,7 +71,7 @@ public class SellPageFormTest extends TestBase {
 		assertTrue(sp.popupWhatBringText.isDisplayed());
 	}
 	
-	//@Test
+	@Test
 	public void faqCollapseTest() {
 		
 		logger = reporter.createTest("Testing FAQ Collapse feature");
@@ -270,8 +101,8 @@ public class SellPageFormTest extends TestBase {
 		return new String[][]{ 
 			{"Evangelin", "Arndt", "7783644351", "earndt0@upenn.edu"},
 			{"Mara", "Daltrey", "7052168429", "mdaltrey1@topsy.com"},
-			{"Skippy", "Beloe", "2345026772", "sbeloe2@zimbio.com"},
-			{"June", "Enterlein", "1551808338", "jenterlein3@slashdot.org"},
+			//{"Skippy", "Beloe", "2345026772", "sbeloe2@zimbio.com"},
+			//{"June", "Enterlein", "1551808338", "jenterlein3@slashdot.org"},
 		};
 		
 	}
@@ -281,8 +112,8 @@ public class SellPageFormTest extends TestBase {
 		return new String[][]{ 
 			{"", "Arndt", "7783644351", "earndt0@upenn.edu"},
 			{"Mara", "", "7052168429", "mdaltrey1@topsy.com"},
-			{"Skippy", "Beloe", "234502633", "sbeloe2@zimbio.com"},
-			{"June", "Enterlein", "1551808338", "jenterlein3@slashdot"},
+			//{"Skippy", "Beloe", "234502633", "sbeloe2@zimbio.com"},
+			//{"June", "Enterlein", "1551808338", "jenterlein3@slashdot"},
 		};
 		
 	}

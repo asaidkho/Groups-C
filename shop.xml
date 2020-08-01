@@ -3,12 +3,8 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
     <classes>
-	   <class name="shopButton" />
-	   <class name="clickTrucksButton" />
-	   <class name="clickToyotaButton" />
-	   <class name="clickByPriceFirstRow" />
-	   <class name="commuterButton" />
-	   <class name="localCarsButton" />
+	   <class name="tests.ShopTest" />
+	 
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

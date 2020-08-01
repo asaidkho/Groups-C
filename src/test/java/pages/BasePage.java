@@ -27,5 +27,10 @@ public abstract class BasePage {
 	@FindBy(id="header-search-button")
 	public WebElement searchButton;
 	
+	@FindBy(xpath="//span[.='More']")
+	public WebElement moreMenuLink;
+	
+	@FindBy(xpath="//a[@href='/car-buying-process/maxcare-service-plans']")
+	public WebElement warrantyLink;
 
 }
