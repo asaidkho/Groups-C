@@ -7,6 +7,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class SearchPage extends BasePage {
 
-	@FindBy(css="div.orig > div.tile-shell > div.car-tile--images > div.save-car")
+	@FindBy(xpath="//article//div[@class='save-car']")
 	public List<WebElement> searchedCarsSaveButton;
 }
