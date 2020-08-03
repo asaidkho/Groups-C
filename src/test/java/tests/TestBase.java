@@ -1,12 +1,16 @@
 package tests;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.StringTokenizer;
 import java.util.concurrent.TimeUnit;
 
@@ -100,11 +104,41 @@ public abstract class TestBase {
 		reporter.flush();
 	}
 	
-	public void deleteBadCookies() {
-		driver = Driver.getDriver();
-		driver.manage().deleteCookieNamed("ai_user");
-		driver.manage().deleteCookieNamed("ai_session");		
-		driver.manage().deleteCookieNamed("ak_bmsc");
+	public static void deleteBadCookies() {
+		
+		Driver.getDriver().manage().deleteCookieNamed("ai_user");
+		Driver.getDriver().manage().deleteCookieNamed("ai_session");		
+		Driver.getDriver().manage().deleteCookieNamed("ak_bmsc");
+		
+		try {
+			
+			File file = new File("Cookies.data");
+			file.createNewFile();
+			BufferedWriter bufWriter = new BufferedWriter(new FileWriter(file));
+			
+			List<String> goodCookies = Arrays.asList("bm_sv", "_abck", "RT",	"s_visit", "bm_mi", "KmxStore", 
+					"_gat_6144a510cabc4cd086ae55f1e2df5ad8", "KmxAuthSession", "bm_sz", "mbox", 
+					"KmxCurrSession_0", "QSI_HistorySession", "_uetvid", "fs_uid", "AKA_A2", "_uetsid", 
+					"s_cc", "_fbp", "at_check", "AMCV_0C1038B35278345B0A490D4C%40AdobeOrg", 
+					"s_sq", "KmxMyKmx_0", "KmxVisitor_0", "s_ppv", "s_ppvl", "_gid", "adobeTransID", 
+					"gpv_v4", "KmxSession_0", "_ga", "_gcl_au", "AMCVS_0C1038B35278345B0A490D4C%40AdobeOrg");
+			
+			
+			for (Cookie ck: Driver.getDriver().manage().getCookies()) {
+				if (!goodCookies.contains(ck.getName())) {
+					bufWriter.write(ck.getName() + " -- " + ck.getValue());
+					bufWriter.newLine();
+					System.out.print("\"" + ck.getName() + "\", ");
+					System.out.println("");
+				}
+			}
+			bufWriter.close();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 

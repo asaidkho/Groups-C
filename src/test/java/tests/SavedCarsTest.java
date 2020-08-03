@@ -1,5 +1,6 @@
 package tests;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -7,6 +8,7 @@ import pages.LoginPage;
 import pages.MainPage;
 import pages.SavedCarsPage;
 import pages.SearchPage;
+import utilities.BrowserUtilities;
 import utilities.Driver;
 
 public class SavedCarsTest extends TestBase{
@@ -33,8 +35,17 @@ public class SavedCarsTest extends TestBase{
 			mp.locationConformPopUp.click();
 		}
 		
+		SearchPage sp = new SearchPage();
+		
+		JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+		
 		logger.info("Saving the first car in the list");
-		new SearchPage().searchedCarsSaveButton.get(0).click();
+		js.executeScript("arguments[0].click();", sp.searchedCarsSaveButton.get(0));
+		
+		BrowserUtilities.waitFor(4);
+		actions.moveToElement(sp.searchedCarsSaveButton.get(1)).click(sp.searchedCarsSaveButton.get(1)).build().perform();
+		BrowserUtilities.waitFor(4);
+		actions.moveToElement(sp.searchedCarsSaveButton.get(2)).click().build().perform();
 		
 		deleteBadCookies();
 		
