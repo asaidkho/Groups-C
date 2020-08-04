@@ -26,6 +26,9 @@ public class MainPage extends BasePage {
 	@FindBy (xpath = "//*[@id=\"search-bar-form\"]/div/div[2]/div[2]/div/div/div/ul/li[3]")
 	public WebElement distanceRadius;
 	
+	@FindBy (xpath = "//*[@id=\"search-bar-form\"]/div/div[2]/div[2]/div/div/div/ul/li[9]/button")
+	public WebElement distanceRadiusNationwide;
+	
 	@FindBy (xpath = "//*[@id=\"recommended-refinements\"]/div[2]/div/div")
 	public WebElement makeFilters;
 	
@@ -59,4 +62,14 @@ public class MainPage extends BasePage {
 	//@FindBy (className = "kmx-typography--headline-1 options--compare-button compare-mode")
 	@FindBy (xpath = "//*[@id=\"search-results-header\"]/div[3]/button[2]")
 	public WebElement compareButton;
+	
+	@FindBy (xpath = "//*[@id=\"search-results-header\"]/div[3]/div/div/button")
+	public WebElement sortBy;
+	
+	//@FindBy (xpath = "//*[@id=\"search-results-header\"]/div[3]/div/div/div/ul/li")
+	//public WebElement sortByList;
+	
+	//@FindBy (xpath = "//*[@id=\"search-results-header\"]/div[3]/div/div/div/ul/li[5]/button")
+	@FindBy (css = "#search-results-header > div:nth-child(3) > div > div > div > ul > li:nth-child(5) > button")
+	public WebElement sortByLowestMileage;
 }
