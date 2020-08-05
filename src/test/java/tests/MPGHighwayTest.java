@@ -1,109 +1,98 @@
 package tests;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
-import pages.MainPage;
+
+
 import pages.ShopPage;
+import pages.FilterPage;
+
 import utilities.BrowserUtilities;
 
-public class MPGHighwayTest {
+public class MPGHighwayTest extends TestBase{
 
-	/* @BeforeMethod
-	 * 
-	 @Test()
-	public void filtersTest() {
-		logger = reporter.createTest("Locate MPG Highway from filters");
-		ShopPage tp = new TrucksPage();
-		tp.MPGHighway.click();
-		logger.info("Clicking MPG HIghway filter Button");
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+	/* @BeforeMethod*/
+	
+	
+	@Test()
+	public void MpgHighwaySliderTest() {
 		
-		assertTrue(tp.localCars.isDisplayed());
-		assertTrue(tp.localCars.isEnabled());
+		
+		logger = reporter.createTest("Test MPG Highway filter  button");
+		ShopPage shp = new ShopPage();
+		logger.info("Clicking on Shop button");
+		shp.shopButton.click();
+		
 		driver.manage().deleteAllCookies();
-		tp.MPGHighway.click();
+		logger.info("Clicking on Trucks button");
+		shp.trucks.click();
+		driver.manage().deleteAllCookies();
+		//logger.info("Locate MPG Highway from filters");
+		FilterPage fp = new FilterPage();
 		
-		if (shp.locationConformPopUp.isEnabled()) {
-			shp.locationConformPopUp.click();
+		fp.MPGHighway.click();
+		logger.info("Clicking MPG Highway filter Button");
+
+		Actions a = new Actions(driver);
+		
+		logger.info("Moving slider to right");
+		
+		a.clickAndHold(fp.sliderHandle).moveByOffset(300, 0).release().build().perform();
+
+		deleteBadCookies();
+
+		    //if (tp.locationConformPopUp.isEnabled()) {
+			//tp.locationConformPopUp.click();
+		
+		assertTrue(driver.findElement(By.xpath("//span[.a='Over 21 MPG']")).getText().contains("Over 21 MPG"));
+		
 		}
-		logger.info("");
-		
-	}
-}
-      @Test
-      public void MPGHighwayTest(){
-       }
-      
-      
-      @Test
-      public void addToFilter(){
-     
-      }
-      
-      
-      
-      
-       
-      
-      @Test 
-      public void searchMakeNationwide (){
-      
-      @Test (dataProvider = "file") // add new data to file
-	  public void searchMakeNationwide(String make, String model) {
-		logger = reporter.createTest("Search by Make");
-		MainPage mp = new MainPage();
-		
-		logger.info("Enter car make"); //BMW X5
-		mp.searchBox.sendKeys(make);
-		logger.info("Clicking on search button");
-		mp.searchButton.click();
-		
-		//assertTrue(mp.searchResults.getText().contains(make));
-		assertTrue(driver.getTitle().contains(make));
-		
-		logger.info("Expand distance wrapper icon");
-		ResultPage rp = new ResultPage()
-		rp.nationwide.click();
-		
-		BrowserUtilities.waitFor(2);
-		driver.manage().deleteAllCookies();
-		assertTrue(rp.nationwide.isEnabled());
-		
-		logger.info("Select Nationwide button");
-		mp.blueColor.click();
-		BrowserUtilities.waitFor(2);
-		logger.info("Validate that Nation wide filter is applied");
-		-- dont know how, changes on class name> (kmx-menu-item-button selected)
-		assertTrue(driver.getTitle().contains("nationwide"));
-	
-	}
-        logger.info("Clicking on distance radius dropdown");
-		rp.Dropdown.click();
-		logger.info("Select the distance radius - Nationwide");
-		rp.Nationwide.click();
-		assertEquals(mp.distanceRadiusDropdown.getText(), "Nationwide");
-	
-      
-      @Test 
-      public void clearFilters(){
-       
-      
-      
-      }
 
-*/
 	
+	@Test
+	public void manualInputToFilter() {
+		
+		logger = reporter.createTest("SEnd Keys to  Input for MPG Highway Filter");
+		ShopPage shp = new ShopPage();
+		logger.info("Clicking on Shop button");
+		shp.shopButton.click();
+		
+		driver.manage().deleteAllCookies();
+		logger.info("Clicking on Trucks button");
+		shp.trucks.click();
+		driver.manage().deleteAllCookies();
+		//logger.info("Locate MPG Highway from filters");
+		FilterPage fp = new FilterPage();
+		
+		logger.info("Clicking MPG Highway filter Button");
+		fp.MPGHighway.click();
+		logger.info("Send keys to input box");
+		fp.inputBox.sendKeys("21");
+		
+		
+		
+		
+		
+	}
 	
-	
-	
-	
-	
-	
-	
-	
+
+
+      
+      
 	
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
