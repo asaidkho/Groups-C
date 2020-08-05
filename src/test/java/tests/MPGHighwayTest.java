@@ -19,7 +19,7 @@ public class MPGHighwayTest extends TestBase{
 	/* @BeforeMethod*/
 	
 	
-	@Test()
+	//@Test()
 	public void MpgHighwaySliderTest() {
 		
 		
@@ -42,22 +42,22 @@ public class MPGHighwayTest extends TestBase{
 		
 		logger.info("Moving slider to right");
 		
-		a.clickAndHold(fp.sliderHandle).moveByOffset(300, 0).release().build().perform();
+		a.clickAndHold(fp.sliderHandle).moveByOffset(200, 0).release().build().perform();
 
 		deleteBadCookies();
 
-		    //if (tp.locationConformPopUp.isEnabled()) {
-			//tp.locationConformPopUp.click();
+		 if (fp.locationConformPopUp.isEnabled()) {
+			fp.locationConformPopUp.click();
 		
 		assertTrue(driver.findElement(By.xpath("//span[.a='Over 21 MPG']")).getText().contains("Over 21 MPG"));
-		
-		}
+		    }
+	}
 
 	
-	@Test
+	//@Test
 	public void manualInputToFilter() {
 		
-		logger = reporter.createTest("SEnd Keys to  Input for MPG Highway Filter");
+		logger = reporter.createTest("Send Keys to  Input for MPG Highway Filter");
 		ShopPage shp = new ShopPage();
 		logger.info("Clicking on Shop button");
 		shp.shopButton.click();
@@ -74,20 +74,30 @@ public class MPGHighwayTest extends TestBase{
 		logger.info("Send keys to input box");
 		fp.inputBox.sendKeys("21");
 		
-		
-		
-		
-		
 	}
 	
 
-
-      
-      
 	
+	@Test
+	public void moreButton() {
+		
+		logger = reporter.createTest("Hover Over More button");
+		FilterPage fp = new FilterPage();
+		
+		
+		Actions a = new Actions(driver);
+		logger.info("hover over More button and Click Why Car Max?");
+		a.moveToElement(fp.moreButton).click(fp.WhyCarMax).build().perform();
+		
+		logger.info("Locate Why Car Max? section");
+		
+		
+		
+		logger.info("Verifying the expected page");
+		assertEquals(driver.getTitle(), "Why you should buy a used car from CarMax");
+		
+	}
 }
-	
-	
 	
 	
 	

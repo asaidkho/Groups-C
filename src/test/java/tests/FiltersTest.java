@@ -2,16 +2,27 @@ package tests;
 
 import static org.testng.Assert.assertTrue;
 
+import java.io.IOException;
+
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import pages.FilterPage;
 import pages.MainPage;
 import utilities.BrowserUtilities;
+import utilities.CSVUtility;
+import utilities.Driver;
 
 public class FiltersTest extends TestBase {
 	
+	
+	@DataProvider (name ="file")
+	public Object[][] getDataFromCSV() throws IOException{
+			return CSVUtility.extractData("carData.csv");
+	}
+
 	@Test (dataProvider = "file") // add new data to file
-	  public void searchMakeAddNationwide(String make, String model) {
+	  public void addFilter(String make, String model) {
 		logger = reporter.createTest("Search by Make");
 		MainPage mp = new MainPage();
 		
@@ -37,44 +48,25 @@ public class FiltersTest extends TestBase {
 		BrowserUtilities.waitFor(2);
 		logger.info("Validate that Nation wide filter is applied");
 		
+		
+		
+		
 	/* dont know how, changes on class name> (kmx-menu-item-button selected)
 		assertTrue(driver.getTitle().contains("nationwide"));*/
 	
 	}
-      
+
 	
 
-/*public void searchByColor() {
-		logger = reporter.createTest("Expand Features from Filters");
-		MainPage mp = new MainPage();
-		
-		logger.info("Enter car make");
-		mp.searchBox.sendKeys("Toyota");
-		logger.info("Clicking on search button");
-		mp.searchButton.click();
-		
-		if (mp.locationConformPopUp.isEnabled()) {
-			mp.locationConformPopUp.click();
-		}
-		driver.manage().deleteAllCookies();
-		logger.info("Click and expand Features from filters");
-		mp.features.click();
-		BrowserUtilities.waitFor(2);
-		driver.manage().deleteAllCookies();
-		assertTrue(mp.features.isEnabled());
-		logger.info("Scroll Down and locate See All button");
-		mp.seeAll.click();
-		BrowserUtilities.waitFor(2);
-		logger.info("Validate");
-		assertTrue(driver.getTitle().contains(""));*/
+
+      
 	
-	
-	
-	
-	
-	/*@Test (dataProvider = "file") // add new data to file
-	  public void searchMakeAddNationwide(String make, String model) {
-		logger = reporter.createTest("Search by Make");
+    
+    @Test 
+    public void clearFilters(){
+    	
+    	//addFilter(make, model);
+    	logger = reporter.createTest("Search by Make");
 		MainPage mp = new MainPage();
 		
 		logger.info("Enter car make"); //BMW X5
@@ -87,28 +79,23 @@ public class FiltersTest extends TestBase {
 		
 		logger.info("Expand distance wrapper icon");
 		
-		FiltersPage fp = new FiltersPage();
-		rp.nationwide.click();
+		FilterPage fp = new FilterPage();
+		fp.nationwide.click();
 		
 		BrowserUtilities.waitFor(2);
 		driver.manage().deleteAllCookies();
 		assertTrue(fp.nationwide.isEnabled());
 		
 		logger.info("Select Nationwide button");
-		rp.nationwide.click();
+		fp.nationwide.click();
 		BrowserUtilities.waitFor(2);
-		logger.info("Validate that Nation wide filter is applied");
+		logger.info("Clear Applied Filters");
 		
-	/* dont know how, changes on class name> (kmx-menu-item-button selected)
-		assertTrue(driver.getTitle().contains("nationwide"));}*/
-	
-
-
-      
-	
-    
-    @Test 
-    public void clearFilters(){
+		fp.clear.click();
+		logger.info("Validate that all applied filters are cleared");
+		assertTrue(Driver.getDriver().getCurrentUrl().equals("https://www.carmax.com/cars/all"));
+		
+		
      
     
     
