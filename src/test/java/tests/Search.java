@@ -4,10 +4,16 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -18,15 +24,16 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import pages.MainPage;
 import utilities.BrowserUtilities;
 import utilities.CSVUtility;
+import utilities.Driver;
 
-public class Search extends TestBase {
+public class Search<href> extends TestBase {
 	
-	
+
 	@DataProvider (name ="file")
 	public Object[][] getDataFromCSV() throws IOException{
 			return CSVUtility.extractData("cars.csv");
 	}
-
+/*
 	@Test (dataProvider = "file")
 	public void SearchByModel(String model, String make) {
 		logger = reporter.createTest("Search by Model");
@@ -212,5 +219,92 @@ public class Search extends TestBase {
 		//BrowserUtilities.waitFor(2);
 		assertTrue(actual.contains("Compare ") && actual.contains(" Vehicles"));
 	}
+	*/
 	
+	//TODO Sprint 2: new test cases
+/*	
+	@Test
+	public void SearchWithSortByLowesMiliage() {
+		logger = reporter.createTest("Search with applying Sort By (drop-down): Lowest Mileage");
+		MainPage mp = new MainPage();
+		
+		logger.info("Entering car make and model");
+		mp.searchBox.sendKeys("BMW X6");
+		logger.info("Clicking on search button");
+		mp.searchButton.click();
+		//deleteBadCookies();
+		if (mp.locationConformPopUp.isEnabled()) {
+			mp.locationConformPopUp.click();
+		}
+		
+		logger.info("Clicking on distance radius dropdown");
+		mp.distanceRadiusDropdown.click();
+		logger.info("Select the distance radius - Nationwide");
+		mp.distanceRadiusNationwide.click();
+		assertEquals(mp.distanceRadiusDropdown.getText(), "Nationwide");
+		//mp.searchButton.click();
+		BrowserUtilities.waitFor(5);
+		logger.info("Sort By Lowest Mileage");
+		mp.sortBy.click();
+		//BrowserUtilities.waitFor(5);
+		//assertTrue(driver.findElement(By.className("kmx-menu kmx-menu--open")).isEnabled());
+		//driver.findElement(By.xpath("//button[.='Lowest mileage']")).click();
+		//mp.sortByLowestMileage.click();
+		//driver.findElement(By.xpath("//div[@class='options--sort']//"
+		//		+ "button[@class='kmx-menu-button kmx-button kmx-button--tertiary']")).click();
+		BrowserUtilities.waitFor(2);
+			
+		Actions builder = new Actions(driver);
+		builder.moveToElement(driver.findElement(By.xpath("//button[.='Lowest mileage']"))).click().perform();
+		BrowserUtilities.waitFor(5);
+
+		logger.info("Verifying that cars got filtered");
+		List<String> carLinks = new ArrayList<>();
+		//Compare mileage of first 6 search result
+		for(int i=1; i<10; i++) {
+			if (i!=5) {
+			carLinks.add(driver.findElement(By.xpath("//*[@id=\"cars-listing\"]/div[1]/article["+i+"]//span[3]")).getText());
+			}
+		}
+		Integer[] value = new Integer[8];
+		for (int i=0; i<carLinks.size();i++) {
+			carLinks.set(i, carLinks.get(i).substring(0, carLinks.get(i).indexOf('K')));
+			value[i] = Integer.valueOf(carLinks.get(i));
+			
+		}
+		assertTrue(isSortedAscending(value));
+	}
+	
+	public static boolean isSortedAscending (Integer[] value) {
+		for (int i = 0; i < value.length-1; i++) {
+			if (value[i] > value[i+1]) {
+				return false;
+			}
+		}
+		return true;
+	}
+*/	
+	@Test
+	public void SearchWithSortByNewArrivals() {
+		logger = reporter.createTest("Search with applying Sort By (drop-down): New arrivals");
+		MainPage mp = new MainPage();
+		
+		logger.info("Entering car make");
+		mp.searchBox.sendKeys("BMW");
+		logger.info("Clicking on search button");
+		mp.searchButton.click();
+		
+		if (mp.locationConformPopUp.isEnabled()) {
+			mp.locationConformPopUp.click();
+		}
+		
+		logger.info("Sort By New arrivals");
+		mp.sortBy.click();
+		driver.findElement(By.xpath("//button[.='New arrivals']")).click();
+		BrowserUtilities.waitFor(5);
+		assertTrue(driver.findElement(By.xpath("//*[@class='kmx-menu-button kmx-button kmx-button--tertiary']")).getText().contains("New arrivals"));
+		
+		//Note: flexible to improve to go through few search results
+		assertEquals(driver.findElement(By.xpath("//*[@id=\"cars-listing\"]//article[1]/a/div[2]")).getText(), "New arrival");
+	}
 }
