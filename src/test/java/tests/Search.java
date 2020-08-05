@@ -26,14 +26,14 @@ import utilities.BrowserUtilities;
 import utilities.CSVUtility;
 import utilities.Driver;
 
-public class Search<href> extends TestBase {
+public class Search extends TestBase {
 	
 
 	@DataProvider (name ="file")
 	public Object[][] getDataFromCSV() throws IOException{
 			return CSVUtility.extractData("cars.csv");
 	}
-/*
+
 	@Test (dataProvider = "file")
 	public void SearchByModel(String model, String make) {
 		logger = reporter.createTest("Search by Model");
@@ -219,10 +219,10 @@ public class Search<href> extends TestBase {
 		//BrowserUtilities.waitFor(2);
 		assertTrue(actual.contains("Compare ") && actual.contains(" Vehicles"));
 	}
-	*/
+
 	
 	//TODO Sprint 2: new test cases
-/*	
+	
 	@Test
 	public void SearchWithSortByLowesMiliage() {
 		logger = reporter.createTest("Search with applying Sort By (drop-down): Lowest Mileage");
@@ -237,6 +237,7 @@ public class Search<href> extends TestBase {
 			mp.locationConformPopUp.click();
 		}
 		
+		deleteBadCookies();
 		logger.info("Clicking on distance radius dropdown");
 		mp.distanceRadiusDropdown.click();
 		logger.info("Select the distance radius - Nationwide");
@@ -283,7 +284,7 @@ public class Search<href> extends TestBase {
 		}
 		return true;
 	}
-*/	
+
 	@Test
 	public void SearchWithSortByNewArrivals() {
 		logger = reporter.createTest("Search with applying Sort By (drop-down): New arrivals");
@@ -297,7 +298,7 @@ public class Search<href> extends TestBase {
 		if (mp.locationConformPopUp.isEnabled()) {
 			mp.locationConformPopUp.click();
 		}
-		
+		deleteBadCookies();
 		logger.info("Sort By New arrivals");
 		mp.sortBy.click();
 		driver.findElement(By.xpath("//button[.='New arrivals']")).click();
