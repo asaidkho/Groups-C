@@ -14,15 +14,14 @@ import pages.FilterPage;
 
 import utilities.BrowserUtilities;
 
-public class MPGHighwayTest extends TestBase{
+public class trucksFilterTest extends TestBase{
 
 	/* @BeforeMethod*/
 	
+	//Sprint 2;
 	
 	//@Test()
 	public void MpgHighwaySliderTest() {
-		
-		
 		logger = reporter.createTest("Test MPG Highway filter  button");
 		ShopPage shp = new ShopPage();
 		logger.info("Clicking on Shop button");
@@ -74,9 +73,25 @@ public class MPGHighwayTest extends TestBase{
 		logger.info("Send keys to input box");
 		fp.inputBox.sendKeys("21");
 		
+		logger.info("Verify");
+		
 	}
 	
-
+	@Test
+	public void addFeatures() {
+		
+		logger = reporter.createTest("Hover Over More button");
+		FilterPage fp = new FilterPage();
+		
+		
+		Actions a = new Actions(driver);
+		logger.info("Hover over More button , Find expanded window and Click Why Car Max?");
+		a.moveToElement(fp.moreButton).click(fp.WhyCarMax).build().perform();
+		
+		logger.info("Verifying the expected page");
+		assertEquals(driver.getTitle(), "Why you should buy a used car from CarMax");
+		
+	}
 	
 	@Test
 	public void moreButton() {
@@ -86,12 +101,8 @@ public class MPGHighwayTest extends TestBase{
 		
 		
 		Actions a = new Actions(driver);
-		logger.info("hover over More button and Click Why Car Max?");
+		logger.info("Hover over More button , Find expanded window and Click Why Car Max?");
 		a.moveToElement(fp.moreButton).click(fp.WhyCarMax).build().perform();
-		
-		logger.info("Locate Why Car Max? section");
-		
-		
 		
 		logger.info("Verifying the expected page");
 		assertEquals(driver.getTitle(), "Why you should buy a used car from CarMax");
