@@ -12,11 +12,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import pages.LoginPage;
+import pages.MainPage;
 import utilities.BrowserUtilities;
 import utilities.Driver;
 
@@ -43,6 +45,27 @@ public class LoginTest extends TestBase{
 		
 		logger.info("Verifying that successfully logged in");
 		assertEquals(Driver.getDriver().getTitle(), "Saved Cars | MyCarMax");		
+	}
+	
+	
+	//@Test
+	public void justCheckingSomething() {
+		
+		driver = Driver.getDriver();
+		driver.navigate().to("https://www.carmax.com/cars?search=toyota+camry");
+		deleteBadCookies();
+		
+		MainPage mp = new MainPage();
+		if (mp.locationConformPopUp.isEnabled()) {
+			mp.locationConformPopUp.click();
+		}
+		
+		driver.findElement(By.xpath("//div[@class='options--sort']//"
+				+ "button[@class='kmx-menu-button kmx-button kmx-button--tertiary']")).click();
+		
+		driver.findElement(By.xpath("//button[.='Lowest mileage']")).click();
+		
+		BrowserUtilities.waitFor(5);
 	}
 	
 	

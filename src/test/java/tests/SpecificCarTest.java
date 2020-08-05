@@ -1,16 +1,13 @@
 package tests;
 
-import org.openqa.selenium.Keys;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import pages.LoginPage;
 import pages.MainPage;
-import pages.SavedCarsPage;
 import pages.SearchPage;
 import pages.SpecificCarPage;
 import utilities.BrowserUtilities;
-import utilities.Driver;
 
 public class SpecificCarTest extends TestBase {
 
@@ -42,8 +39,11 @@ public class SpecificCarTest extends TestBase {
 	public void saveCarTest() {		
 		
 		SpecificCarPage scp = new SpecificCarPage();
-		
-		scp.saveCarButton.click();		
+		deleteBadCookies();
+		if(scp.saveCarButtonFave.getAttribute("class").contains("hidden")) {
+			scp.saveCarButton.click();
+			BrowserUtilities.waitFor(3);
+		}
 	}
 	
 	@Test

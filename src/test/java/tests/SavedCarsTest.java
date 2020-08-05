@@ -1,6 +1,10 @@
 package tests;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -36,24 +40,92 @@ public class SavedCarsTest extends TestBase{
 		}
 		
 		SearchPage sp = new SearchPage();
+		deleteBadCookies();
 		
 		JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 		
 		logger.info("Saving the first car in the list");
-		js.executeScript("arguments[0].click();", sp.searchedCarsSaveButton.get(0));
+		if(!sp.searchedCarsSaveButton.get(0).getAttribute("class").contains("saved")) {
+			js.executeScript("arguments[0].click();", sp.searchedCarsSaveButton.get(0));
+			BrowserUtilities.waitFor(4);
+		}
 		
-		BrowserUtilities.waitFor(4);
-		actions.moveToElement(sp.searchedCarsSaveButton.get(1)).click(sp.searchedCarsSaveButton.get(1)).build().perform();
-		BrowserUtilities.waitFor(4);
-		actions.moveToElement(sp.searchedCarsSaveButton.get(2)).click().build().perform();
+		if(!sp.searchedCarsSaveButton.get(0).getAttribute("class").contains("saved")) {		
+			actions.moveToElement(sp.searchedCarsSaveButton.get(1)).click().build().perform();
+			BrowserUtilities.waitFor(4);
+		}
 		
 		deleteBadCookies();
 		
 		scp.profileButton.click();
 		scp.savedCarsButton.click();
 		
-		logger.info("Verifying that car got successfully saved");
+		logger.info("Verifying that car got successfully saved");		
 		
+	}
+	
+	@Test
+	public void savedCarDeleteTest() {
+		logger = reporter.createTest("Testing Delete feature of Saved Cars");
 		
+		deleteBadCookies();
+		
+		SavedCarsPage scp = new SavedCarsPage();
+		
+		scp.profileButton.click();
+		scp.savedCarsButton.click();
+		
+		String firstCarTitleText = scp.carTitles.get(0).getText();
+		int count = 0;
+		for(WebElement carTitle: scp.carTitles) {			
+			if (carTitle.getText().equals(firstCarTitleText)) {
+				count++;
+			}
+		}
+		
+		deleteBadCookies();
+		
+		scp.deleteCarButtons.get(0).click();
+		
+		BrowserUtilities.waitFor(4);
+		deleteBadCookies();
+		int postCount = 0;
+		for(WebElement carTitle: scp.carTitles) {			
+			if (carTitle.getText().equals(firstCarTitleText)) {
+				postCount++;
+			}
+		}
+		
+		assertEquals(count, postCount+1);	
+		
+	}
+	
+	@Test
+	public void sortByPriceTest() {
+		
+		logger = reporter.createTest("Testing Sort by Price in Asceding");
+		
+		deleteBadCookies();
+		
+		SavedCarsPage scp = new SavedCarsPage();
+		
+		scp.profileButton.click();
+		scp.savedCarsButton.click();
+		
+		deleteBadCookies();
+		
+		scp.sortButton.click();
+		scp.sortPriceAsc.click();
+		
+		logger.info("Testing if we have the right result");
+		BrowserUtilities.waitFor(5);
+		int p = 0;
+		for(WebElement price: scp.prices) {
+			
+			int carPrice = Integer.parseInt(price.getText().replaceAll("\\D", ""));
+			logger.info("Testing for " + carPrice);
+			assertTrue(p<=carPrice);
+			p = carPrice;
+		}
 	}
 }
