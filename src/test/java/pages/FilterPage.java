@@ -55,7 +55,7 @@ public class FilterPage extends BasePage {
 		
 		@FindBy (xpath = "//*[@id=\"search-bar-form\"]/div/div[2]/div[2]/div/div/div/ul/li[9]/button")
 		public WebElement distanceRadiusNationwide;*/
-	}
+}
 
 	
 	
