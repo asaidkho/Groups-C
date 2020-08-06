@@ -44,6 +44,7 @@ public class SpecificCarTest extends TestBase {
 			scp.saveCarButton.click();
 			BrowserUtilities.waitFor(3);
 		}
+		
 	}
 	
 	@Test

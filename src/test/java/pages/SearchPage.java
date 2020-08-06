@@ -15,4 +15,12 @@ public class SearchPage extends BasePage {
 	
 	@FindBy(xpath="//article/a")
 	public List<WebElement> carLinks;
+	
+	@FindBy(css="span.save-search--link")
+	public WebElement saveSearchLink;
+	
+	@FindBy(id="save-search-name")
+	public WebElement saveSearchInputBox;
+	
+	
 }

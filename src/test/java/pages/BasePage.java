@@ -42,6 +42,10 @@ public abstract class BasePage {
 	@FindBy(linkText="Saved Cars")
 	public WebElement savedCarsButton;
 	
+	@FindBy(linkText="Saved Searches")
+	public WebElement savedSearchesButton;
+	
+	
 	
 	
 }
