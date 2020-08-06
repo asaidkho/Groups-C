@@ -3,8 +3,12 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class FilterPage extends BasePage { 
-
+public class FilterPage extends BasePage {
+	
+	
+    //trucksFilterTests
+	
+	
 	// drawer label
 	@FindBy(id = "mpghighway")
 	public WebElement MPGHighway;
@@ -14,25 +18,31 @@ public class FilterPage extends BasePage {
 	public WebElement sliderHandle;
 
 	// inputBox
-	// @FindBy(className = "slider-input__text")
 	@FindBy(xpath = "//input[@type='tel']")
 	public WebElement inputBox;
-
+	// @FindBy(className = "slider-input__text")
+	
 	// Features
 	@FindBy(id = "Features")
 	public WebElement features;
 
 	// seeAllFromFeatures
-
-	@FindBy(xpath = "//*[@id=\"Features\"]/div[3]/ul/button")
-	// @FindBy(className ="facet--curated-show-more kmx-button kmx-button--secondary
-	// visible");
-	// @FindBy(xpath="//button[.='See All']");
+    @FindBy(xpath = "//*[@id=\"Features\"]/div[3]/ul/button")
 	public WebElement seeAll;
-
+	
+	// @FindBy(className ="facet--curated-show-more kmx-button kmx-button--secondary
+		// visible");
+		// @FindBy(xpath="//button[.='See All']");
+    
+    
+     //Filter tests
+    
+    
+    
 	// clear filter
 	@FindBy(className = "sidebar-header--action clear--link")
 	public WebElement clear;
+	
 	// https://www.carmax.com/cars/all
 	// id="search-results-header"
 
@@ -51,42 +61,10 @@ public class FilterPage extends BasePage {
 	public WebElement WhyCarMax;
 
 	@FindBy(xpath = "/html/body/div[4]/div/div/div[1]")
-			public WebElement locationConformPopUp;
+	public WebElement locationConformPopUp;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-         /*/ @FindBy (xpath = "//*[@id=\"header-helpful-links-menu\"]/ul/li[3]/a")
-         // public WebElement WhyCarMax;
-            // }
-
-
-           //*[@id="header-helpful-links-menu"]/ul/li[3]/a
-        
-
-	
-		/*@FindBy (css = "#search-bar-form 
-		 * > div > div.search-bar--fields-wrapper > div.search-bar--form-field.radius > div > button")
-		public WebElement DropDown;
-		
-		
-		@FindBy (xpath = "//*[@id=\"search-bar-form\"]/div/div[2]/div[2]/div/div/div/ul/li[9]/button")
-		public WebElement distanceRadiusNationwide;
-            }
-     //change place to searchPage.
-	//search byMake>Nationwide
-	//@FindBy(xpath = "")
-	//public WebElement ;*/
-	
 	
 	
 	

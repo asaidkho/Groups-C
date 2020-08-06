@@ -23,13 +23,18 @@ public class FiltersTest extends TestBase {
 
 	@Test (dataProvider = "file") // add new data to file
 	  public void addFilter(String make, String model) {
-		logger = reporter.createTest("Search by Make");
+		logger = reporter.createTest("Search for a specific car model");
 		MainPage mp = new MainPage();
 		
-		logger.info("Enter car make"); //BMW X5
-		mp.searchBox.sendKeys(make);
+		logger.info("Enter car make and model"); //BMW X5
+		mp.searchBox.sendKeys(make,model);
 		logger.info("Clicking on search button");
 		mp.searchButton.click();
+		
+		if (mp.locationConformPopUp.isEnabled()) {
+			mp.locationConformPopUp.click();
+		}
+		deleteBadCookies();
 		
 		//assertTrue(mp.searchResults.getText().contains(make));
 		//assertTrue(driver.getTitle().contains(make));
@@ -37,6 +42,11 @@ public class FiltersTest extends TestBase {
 		logger.info("Expand distance wrapper icon");
 		
 		FilterPage fp = new FilterPage();
+		
+		deleteBadCookies();
+		if (fp.locationConformPopUp.isEnabled()) {
+			fp.locationConformPopUp.click();
+		}
 		fp.nationwide.click();
 		
 		BrowserUtilities.waitFor(2);
@@ -46,7 +56,7 @@ public class FiltersTest extends TestBase {
 		logger.info("Select Nationwide button");
 		fp.nationwide.click();
 		BrowserUtilities.waitFor(2);
-		logger.info("Validate that Nation wide filter is applied");
+		logger.info("Validate that Nationwide filter is applied");
 		
 		
 		
@@ -56,29 +66,26 @@ public class FiltersTest extends TestBase {
 	
 	}
 
-	
-
-
-      
-	
-    
-    @Test 
-    public void clearFilters(){
+    @Test (dataProvider ="file")
+    public void clearFilters(String make, String model) {
     	
-    	//addFilter(make, model);
-    	logger = reporter.createTest("Search by Make");
+    	
+    	logger = reporter.createTest("Search for a Car");
 		MainPage mp = new MainPage();
 		
 		logger.info("Enter car make"); //BMW X5
-		mp.searchBox.sendKeys(make);
+		mp.searchBox.sendKeys(make, model);
 		logger.info("Clicking on search button");
 		mp.searchButton.click();
 		
 		//assertTrue(mp.searchResults.getText().contains(make));
 		//assertTrue(driver.getTitle().contains(make));
-		
+		deleteBadCookies();
 		logger.info("Expand distance wrapper icon");
-		
+		if (mp.locationConformPopUp.isEnabled()) {
+			mp.locationConformPopUp.click();
+		}
+		deleteBadCookies();
 		FilterPage fp = new FilterPage();
 		fp.nationwide.click();
 		
