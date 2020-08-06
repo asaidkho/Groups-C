@@ -14,14 +14,14 @@ import pages.FilterPage;
 
 import utilities.BrowserUtilities;
 
-public class trucksFilterTest extends TestBase{
+public class MPGHighwayTest extends TestBase{
 
 	/* @BeforeMethod*/
 	
 	//Sprint 2;
 	
 	//@Test()
-	public void MpgHighwaySliderTest() {
+	public void SliderTest() {
 		logger = reporter.createTest("Test MPG Highway filter  button");
 		ShopPage shp = new ShopPage();
 		logger.info("Clicking on Shop button");
@@ -77,21 +77,37 @@ public class trucksFilterTest extends TestBase{
 		
 	}
 	
-	@Test
-	public void addFeatures() {
+      public void addFeaturesToFilter() {
 		
-		logger = reporter.createTest("Hover Over More button");
+		logger = reporter.createTest("Add features to Filter");
+		ShopPage shp = new ShopPage();
+		logger.info("Clicking on Shop button");
+		shp.shopButton.click();
+		
+		driver.manage().deleteAllCookies();
+		logger.info("Clicking on Trucks button");
+		shp.trucks.click();
+		driver.manage().deleteAllCookies();
+		//logger.info("Locate MPG Highway from filters");
 		FilterPage fp = new FilterPage();
+		
+		logger.info("Locate and Expand  Features ");
+		fp.features.click();
 		
 		
 		Actions a = new Actions(driver);
-		logger.info("Hover over More button , Find expanded window and Click Why Car Max?");
-		a.moveToElement(fp.moreButton).click(fp.WhyCarMax).build().perform();
 		
-		logger.info("Verifying the expected page");
-		assertEquals(driver.getTitle(), "Why you should buy a used car from CarMax");
+		
+		logger.info("Expand features");
+		a.moveToElement(fp.seeAll).click().build().perform();
+		logger.info("");
+		
+		//dont know how to verify
+		logger.info("Verify");
 		
 	}
+	
+	
 	
 	@Test
 	public void moreButton() {
@@ -99,6 +115,10 @@ public class trucksFilterTest extends TestBase{
 		logger = reporter.createTest("Hover Over More button");
 		FilterPage fp = new FilterPage();
 		
+		deleteBadCookies();
+		if (fp.locationConformPopUp.isEnabled()) {
+			fp.locationConformPopUp.click();
+		}
 		
 		Actions a = new Actions(driver);
 		logger.info("Hover over More button , Find expanded window and Click Why Car Max?");
