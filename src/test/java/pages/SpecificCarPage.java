@@ -26,5 +26,11 @@ public class SpecificCarPage extends BasePage {
 	@FindBy(xpath="//div[@class='interior-exterior-toggle kmx-typography--body-1']/span[.='Interior']")
 	public WebElement interiorButton;
 	
+	@FindBy(className = "price-mileage__car-title__year-make")
+	public WebElement carTitle;
+	
+	@FindBy(css="span.value")
+	public WebElement carPrice;
+	
 	
 }

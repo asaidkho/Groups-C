@@ -72,6 +72,7 @@ public class SavedCarsTest extends TestBase{
 		
 		SavedCarsPage scp = new SavedCarsPage();
 		
+		logger.info("Navigating to the Saved Cars Page");
 		scp.profileButton.click();
 		scp.savedCarsButton.click();
 		
@@ -84,9 +85,10 @@ public class SavedCarsTest extends TestBase{
 		}
 		
 		deleteBadCookies();
-		
+		logger.info("Deleting the top Saved Car");
 		scp.deleteCarButtons.get(0).click();
 		
+		logger.info("Verifying that the car got deleted");
 		BrowserUtilities.waitFor(4);
 		deleteBadCookies();
 		int postCount = 0;
@@ -108,12 +110,15 @@ public class SavedCarsTest extends TestBase{
 		deleteBadCookies();
 		
 		SavedCarsPage scp = new SavedCarsPage();
+		logger.info("Navigating to the Saved Cars Page by clicking on right Menu link");
 		
 		scp.profileButton.click();
 		scp.savedCarsButton.click();
 		
+		
 		deleteBadCookies();
 		
+		logger.info("Clicking on sort by price button");
 		scp.sortButton.click();
 		scp.sortPriceAsc.click();
 		

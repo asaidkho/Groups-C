@@ -21,5 +21,8 @@ public class SavedCarsPage extends BasePage {
 	
 	@FindBy(css="span.saved-car-price")
 	public List<WebElement> prices;
+	
+	@FindBy(css=".d-flex-desktop > div > h4")
+	public List<WebElement> titles;
 
 }
