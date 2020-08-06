@@ -2,18 +2,9 @@ package tests;
 
 import static org.testng.Assert.assertEquals;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

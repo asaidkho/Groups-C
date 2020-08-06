@@ -2,10 +2,8 @@ package tests;
 
 import static org.testng.Assert.assertTrue;
 
-import java.util.List;
 
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -61,7 +59,6 @@ public class SellPageFormTest extends TestBase {
 		SellPage sp = new SellPage();
 		logger.info("Selecting a state");
 		Select sel = new Select(sp.selectState);
-		List<WebElement> states = sel.getOptions();
 		sel.selectByVisibleText("Alabama");
 		
 		logger.info("selecting radio buttons");

@@ -50,7 +50,7 @@ public class SavedCarsTest extends TestBase{
 			BrowserUtilities.waitFor(4);
 		}
 		
-		if(!sp.searchedCarsSaveButton.get(0).getAttribute("class").contains("saved")) {		
+		if(!sp.searchedCarsSaveButton.get(1).getAttribute("class").contains("saved")) {		
 			actions.moveToElement(sp.searchedCarsSaveButton.get(1)).click().build().perform();
 			BrowserUtilities.waitFor(4);
 		}
