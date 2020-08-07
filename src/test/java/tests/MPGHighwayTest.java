@@ -6,6 +6,7 @@ import static org.testng.Assert.assertTrue;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
@@ -15,6 +16,7 @@ import pages.ShopPage;
 import pages.FilterPage;
 
 import utilities.BrowserUtilities;
+import utilities.Driver;
 
 public class MPGHighwayTest extends TestBase{
 
@@ -23,7 +25,7 @@ public class MPGHighwayTest extends TestBase{
 	//Sprint 2;
 	
 	//@Test()
-	@Test (enabled = false) 
+	@Test (enabled = true) 
 	public void SliderTest() {
 		logger = reporter.createTest("Test MPG Highway filter  button");
 		ShopPage shp = new ShopPage();
@@ -44,6 +46,7 @@ public class MPGHighwayTest extends TestBase{
 		logger.info("Clicking MPG Highway filter Button");
 		Actions a = new Actions(driver);
 		logger.info("Moving slider to right");
+		deleteBadCookies();
 		/*a.clickAndHold(fp.sliderHandle).perform();
 		a.moveByOffset(100, 0).perform();
 		//BrowserUtilities.waitFor(3);
@@ -82,6 +85,8 @@ public class MPGHighwayTest extends TestBase{
 	}
 	@Test //(enabled = false)
       public void addFeaturesToFilter() {
+		
+		driver = Driver.getDriver();
 		logger = reporter.createTest("Add features to Filter");
 		ShopPage shp = new ShopPage();
 		logger.info("Clicking on Shop button");
@@ -101,7 +106,7 @@ public class MPGHighwayTest extends TestBase{
 		fp.features.click();
 		Actions a = new Actions(driver);
 		logger.info("Expand features");
-		a.moveToElement(fp.seeAll).perform();
+		//a.moveToElement(fp.seeAll).build().perform();
 		BrowserUtilities.waitFor(2);
 		a.moveToElement(fp.seeAll).click().perform();
 		logger.info("");
@@ -114,15 +119,22 @@ public class MPGHighwayTest extends TestBase{
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("//*[@id='Features']/div[3]/ul/li[60]")));
 		BrowserUtilities.waitFor(7);
-		String[] val = new String[50];
-		for(int i=1; i<val.length; i++) {	
-			val[i]=driver.findElement(By.xpath("//*[@id=\"Features\"]/div[3]/ul/li["+i+"]//span")).getText();
-			System.out.println(val[i]);
+		String temp = "000";
+		for(WebElement feature: fp.allFeatures) {
+			System.out.println(feature.getText().toLowerCase());
+			assertTrue(feature.getText().toLowerCase().compareTo(temp)>=0);
+			temp = feature.getText().toLowerCase();
 		}
-		char[] c = new char[val.length];
-		for (int i=0; i<val.length;i++) {
-			c[i] = val[i].charAt(0);
-		}
+//		
+//		String[] val = new String[50];
+//		for(int i=1; i<val.length; i++) {	
+//			val[i]=driver.findElement(By.xpath("//*[@id=\"Features\"]/div[3]/ul/li["+i+"]//span")).getText();
+//			System.out.println(val[i]);
+//		}
+//		char[] c = new char[val.length];
+//		for (int i=0; i<val.length;i++) {
+//			c[i] = val[i].charAt(0);
+//		}
 		//a.moveToElement(driver.findElement(By.id("Features"))).perform();
 		//BrowserUtilities.waitFor(2);
 		//a.moveByOffset(0, 100).perform();

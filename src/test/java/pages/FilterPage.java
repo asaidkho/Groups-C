@@ -1,5 +1,7 @@
 package pages;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -55,8 +57,8 @@ public class FilterPage extends BasePage {
 		@FindBy(xpath = "//*[@id='Availability']//div[3]/ul/li[2]")
 		public WebElement newStatus;
 		
-		
-		
+		@FindBy(xpath="//li//span[@class='refinement-value--name']")
+		public List<WebElement> allFeatures;
 	
 }
 	
