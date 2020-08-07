@@ -16,13 +16,13 @@ import utilities.BrowserUtilities;
 
 public class SavedSearchesTest extends TestBase{
 	
-	@BeforeMethod
+	@BeforeMethod(alwaysRun=true)
 	public void setUpMethod2() {
 		LoginPage lp = new LoginPage();
 		lp.login();			
 	}
 	
-	@Test
+	@Test(groups="smoke2")
 	public void saveSearchTest() {
 		logger = reporter.createTest("Save Search Test");
 		SavedSearchesPage ssp = new SavedSearchesPage();

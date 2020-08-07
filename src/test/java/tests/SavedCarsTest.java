@@ -17,7 +17,7 @@ import utilities.Driver;
 
 public class SavedCarsTest extends TestBase{
 	
-	@BeforeMethod
+	@BeforeMethod(alwaysRun=true)
 	public void setUpMethod2() {
 		LoginPage lp = new LoginPage();
 		lp.login();			

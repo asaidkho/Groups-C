@@ -17,7 +17,7 @@ import utilities.BrowserUtilities;
 
 public class SpecificCarTest extends TestBase {
 
-	@BeforeMethod
+	@BeforeMethod(alwaysRun=true)
 	public void setUpMethod2() {
 		LoginPage lp = new LoginPage();		
 		lp.login();
@@ -78,7 +78,7 @@ public class SpecificCarTest extends TestBase {
 		
 	}
 	
-	@Test
+	@Test(groups="smoke2")
 	public void move360Test() throws IOException {
 		SpecificCarPage scp = new SpecificCarPage();
 		
