@@ -1,5 +1,6 @@
 package tests;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
@@ -65,6 +66,46 @@ public class FiltersTest extends TestBase {
 		assertTrue(driver.getTitle().contains("nationwide"));*/
 	
 	}
+	
+	
+	
+	
+	@Test()
+
+	public void addStatusToFilter() {
+		logger = reporter.createTest("Limit Search Results by Location and Distance");
+		MainPage mp = new MainPage();
+	
+		
+		logger.info("Entering car make and model");
+	
+		mp.searchBox.sendKeys("Toyota");
+		logger.info("Clicking on search button");
+		mp.searchButton.click();
+		assertTrue(driver.getTitle().contains("Toyota "));
+		
+	     if (mp.locationConformPopUp.isEnabled()) {
+			mp.locationConformPopUp.click();
+		}
+		driver.manage().deleteAllCookies();
+		
+		FilterPage  fp = new FilterPage();
+		logger.info("Click and Open  Status bar");
+		fp.statusFilter.click();
+	    if (fp.locationConformPopUp.isEnabled()) {
+				fp.locationConformPopUp.click();
+			}
+			driver.manage().deleteAllCookies();
+		BrowserUtilities.waitFor(2);
+		
+		driver.manage().deleteAllCookies();
+		logger.info("Clicking on New ");
+		fp.newCondition.click();
+		logger.info("Addin status NEW to filter");
+		fp.newCondition.click();
+		//assertTrue(fp.newCondition.getText().contains("BRAND NEW"));
+		assertEquals(fp.newCondition.getText(), "BRAND NEW");	
+	}
 
     @Test (dataProvider ="file")
     public void clearFilters(String make, String model) {
@@ -103,8 +144,6 @@ public class FiltersTest extends TestBase {
 		assertTrue(Driver.getDriver().getCurrentUrl().equals("https://www.carmax.com/cars/all"));
 		
 		
-     
-    
     
     }
 
