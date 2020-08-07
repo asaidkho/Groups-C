@@ -58,18 +58,11 @@ public class FiltersTest extends TestBase {
 		fp.nationwide.click();
 		BrowserUtilities.waitFor(2);
 		logger.info("Validate that Nationwide filter is applied");
-		
-		
-		
-		
+			
 	/* dont know how, changes on class name> (kmx-menu-item-button selected)
 		assertTrue(driver.getTitle().contains("nationwide"));*/
 	
 	}
-	
-	
-	
-	
 	@Test()
 
 	public void addStatusToFilter() {
@@ -82,15 +75,16 @@ public class FiltersTest extends TestBase {
 		mp.searchBox.sendKeys("Toyota");
 		logger.info("Clicking on search button");
 		mp.searchButton.click();
-		assertTrue(driver.getTitle().contains("Toyota "));
+		//assertTrue(driver.getTitle().contains("Toyota "));
 		
 	     if (mp.locationConformPopUp.isEnabled()) {
 			mp.locationConformPopUp.click();
 		}
 		driver.manage().deleteAllCookies();
 		
-		FilterPage  fp = new FilterPage();
+	
 		logger.info("Click and Open  Status bar");
+		FilterPage  fp = new FilterPage();
 		fp.statusFilter.click();
 	    if (fp.locationConformPopUp.isEnabled()) {
 				fp.locationConformPopUp.click();
@@ -100,11 +94,11 @@ public class FiltersTest extends TestBase {
 		
 		driver.manage().deleteAllCookies();
 		logger.info("Clicking on New ");
-		fp.newCondition.click();
+		fp.newStatus.click();
 		logger.info("Addin status NEW to filter");
-		fp.newCondition.click();
+		fp.newStatus.click();
 		//assertTrue(fp.newCondition.getText().contains("BRAND NEW"));
-		assertEquals(fp.newCondition.getText(), "BRAND NEW");	
+		assertEquals(fp.newStatus.getText(), "BRAND NEW");	
 	}
 
     @Test (dataProvider ="file")
@@ -118,7 +112,9 @@ public class FiltersTest extends TestBase {
 		mp.searchBox.sendKeys(make, model);
 		logger.info("Clicking on search button");
 		mp.searchButton.click();
-		
+		if (mp.locationConformPopUp.isEnabled()) {
+			mp.locationConformPopUp.click();
+		}
 		//assertTrue(mp.searchResults.getText().contains(make));
 		//assertTrue(driver.getTitle().contains(make));
 		deleteBadCookies();
