@@ -28,13 +28,12 @@ import utilities.Driver;
 
 public class Search extends TestBase {
 	
-
 	@DataProvider (name ="file")
 	public Object[][] getDataFromCSV() throws IOException{
 			return CSVUtility.extractData("cars.csv");
 	}
 
-	@Test (dataProvider = "file")
+	@Test (dataProvider = "file", enabled = false)  
 	public void SearchByModel(String model, String make) {
 		logger = reporter.createTest("Search by Model");
 		MainPage mp = new MainPage();
@@ -48,7 +47,7 @@ public class Search extends TestBase {
 		assertTrue(driver.getTitle().contains(model));
 	}
 	
-	@Test (dataProvider = "file")
+	@Test (dataProvider = "file", enabled = false) 
 	public void SearchByMake(String model, String make) {
 		logger = reporter.createTest("Search by Make");
 		MainPage mp = new MainPage();
@@ -63,7 +62,7 @@ public class Search extends TestBase {
 	}
 
 	//@Test (dataProvider = "file")
-	@Test(groups="smoke")
+	@Test(groups="smoke", enabled = false) 
 	//public void limitSearchResultsByLocationAndDistance(String model, String make) {
 	public void limitSearchResultsByLocationAndDistance() {
 		logger = reporter.createTest("Limit Search Results by Location and Distance");
@@ -96,7 +95,7 @@ public class Search extends TestBase {
 		assertEquals(mp.distanceRadiusDropdown.getText(), "75 Miles");	
 	}
 
-	@Test
+	@Test (enabled = false) 
 	public void searchByTypeFilterMake() {
 		logger = reporter.createTest("Search by Type with applied filter of Make");
 		MainPage mp = new MainPage();
@@ -126,7 +125,7 @@ public class Search extends TestBase {
 		//assertTrue(mp.searchResults.getText().contains("Toyota"));
 	}
 	
-	@Test
+	@Test (enabled = false) 
 	public void searchByMakeFilterYear() {
 		logger = reporter.createTest("Search by Make with applied filter on year");
 		MainPage mp = new MainPage();
@@ -162,7 +161,7 @@ public class Search extends TestBase {
 	}
 
 
-	@Test(groups="smoke")
+	@Test(groups="smoke", enabled = false) 
 	public void searchByColor() {
 		logger = reporter.createTest("Search by color");
 		MainPage mp = new MainPage();
@@ -189,7 +188,7 @@ public class Search extends TestBase {
 		//assertTrue(mp.searchResults.getText().contains("Blue"));
 	}
 
-	@Test(groups="smoke")
+	@Test(groups="smoke", enabled = false) 
 	public void searchCompare() {
 		logger = reporter.createTest("Compare the selected cars produced by search result");
 		MainPage mp = new MainPage();
@@ -222,8 +221,8 @@ public class Search extends TestBase {
 
 	
 	//TODO Sprint 2: new test cases
-	
-	@Test
+
+	@Test (enabled = false)
 	public void SearchWithSortByLowesMiliage() {
 		logger = reporter.createTest("Search with applying Sort By (drop-down): Lowest Mileage");
 		MainPage mp = new MainPage();
@@ -232,27 +231,19 @@ public class Search extends TestBase {
 		mp.searchBox.sendKeys("BMW X6");
 		logger.info("Clicking on search button");
 		mp.searchButton.click();
-		//deleteBadCookies();
+
 		if (mp.locationConformPopUp.isEnabled()) {
 			mp.locationConformPopUp.click();
 		}
-		
 		deleteBadCookies();
 		logger.info("Clicking on distance radius dropdown");
 		mp.distanceRadiusDropdown.click();
 		logger.info("Select the distance radius - Nationwide");
 		mp.distanceRadiusNationwide.click();
 		assertEquals(mp.distanceRadiusDropdown.getText(), "Nationwide");
-		//mp.searchButton.click();
 		BrowserUtilities.waitFor(5);
 		logger.info("Sort By Lowest Mileage");
 		mp.sortBy.click();
-		//BrowserUtilities.waitFor(5);
-		//assertTrue(driver.findElement(By.className("kmx-menu kmx-menu--open")).isEnabled());
-		//driver.findElement(By.xpath("//button[.='Lowest mileage']")).click();
-		//mp.sortByLowestMileage.click();
-		//driver.findElement(By.xpath("//div[@class='options--sort']//"
-		//		+ "button[@class='kmx-menu-button kmx-button kmx-button--tertiary']")).click();
 		BrowserUtilities.waitFor(2);
 			
 		Actions builder = new Actions(driver);
@@ -274,7 +265,9 @@ public class Search extends TestBase {
 			
 		}
 		assertTrue(isSortedAscending(value));
+		driver.manage().deleteAllCookies();
 	}
+	
 	
 	public static boolean isSortedAscending (Integer[] value) {
 		for (int i = 0; i < value.length-1; i++) {
@@ -284,8 +277,8 @@ public class Search extends TestBase {
 		}
 		return true;
 	}
-
-	@Test
+	
+	@Test (enabled = false) 
 	public void SearchWithSortByNewArrivals() {
 		logger = reporter.createTest("Search with applying Sort By (drop-down): New arrivals");
 		MainPage mp = new MainPage();
@@ -302,10 +295,198 @@ public class Search extends TestBase {
 		logger.info("Sort By New arrivals");
 		mp.sortBy.click();
 		driver.findElement(By.xpath("//button[.='New arrivals']")).click();
-		BrowserUtilities.waitFor(5);
-		assertTrue(driver.findElement(By.xpath("//*[@class='kmx-menu-button kmx-button kmx-button--tertiary']")).getText().contains("New arrivals"));
-		
+		BrowserUtilities.waitFor(4);
 		//Note: flexible to improve to go through few search results
-		assertEquals(driver.findElement(By.xpath("//*[@id=\"cars-listing\"]//article[1]/a/div[2]")).getText(), "New arrival");
+		assertEquals(driver.findElement(By.xpath("//*[@id=\"cars-listing\"]//article[1]/a/div[2]")).getText(), "NEW ARRIVAL");
+	}
+	
+/** Price / Monthly Payment Filter*/
+	
+	@Test (enabled = false) //-Filter by Price with applying Actions class
+	public void SearchWithPriceFilter() {
+		logger = reporter.createTest("Search with applying Price Filter from Price / Monthly Payment Filter drop-down");
+		MainPage mp = new MainPage();
+		
+		logger.info("Entering car make");
+		mp.searchBox.sendKeys("Lexus");
+		logger.info("Clicking on search button");
+		mp.searchButton.click();
+		
+		if (mp.locationConformPopUp.isEnabled()) {
+			mp.locationConformPopUp.click();
+		}
+		deleteBadCookies();
+		
+		logger.info("Scroll down the page");
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,200)");
+		logger.info("Sort By Price Filter");
+		mp.priceFilter.click();
+		BrowserUtilities.waitFor(3);
+		//driver.findElement(By.xpath("//*[@class='tab kmx-typography--body-1 active-tab']//button")).getText()
+		assertTrue(driver.findElement(By.xpath("//*[@class='range-slider--histogram-avg kmx-typography--headline-1']")).isDisplayed());
+		deleteBadCookies();
+		Actions action = new Actions(driver);
+		action.clickAndHold(mp.priceScrollLeft).perform();
+		action.moveByOffset(-55, 0).perform();
+		action.release().perform();
+		//BrowserUtilities.waitFor(2);
+		//assertEquals(driver.findElement(By.xpath("//*[@class='range-slider__inputs']//div[2]//input")).getAttribute("value"), "38,000");
+		//assertEquals(driver.findElement(By.xpath("//*[@class='selected-refinements']//button[2]")).getText(), "Under $38,000");
+		
+		action.clickAndHold(mp.priceScrollRight).perform();
+		action.moveByOffset(60, 0).perform();
+		action.release().perform();
+		BrowserUtilities.waitFor(4);
+		//assertEquals(driver.findElement(By.xpath("//*[@class='range-slider__inputs']//div[1]//input")).getAttribute("value"), "17,500");
+		
+		assertEquals(driver.findElement(By.xpath("//*[@class='selected-refinements']//button[2]")).getText(), "$17,500-$38,000");
+		driver.manage().deleteAllCookies();
+	}
+	
+
+	@Test (enabled = false) //-Filer by Monthly Payment with applying Actions class and Apply button
+	public void SearchWithMonthlyPaymentFilter() {
+		logger = reporter.createTest("Search with applying Monthly Payment from Price / Monthly Payment Filter drop-down");
+		MainPage mp = new MainPage();
+		
+		logger.info("Entering car make");
+		mp.searchBox.sendKeys("Lexus");
+		logger.info("Clicking on search button");
+		mp.searchButton.click();
+		
+		if (mp.locationConformPopUp.isEnabled()) {
+			mp.locationConformPopUp.click();
+		}
+		deleteBadCookies();
+		logger.info("Scroll down the page");
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,200)");
+		logger.info("Price / Monthly Payment Filter drop-down");
+		mp.priceFilter.click();
+		BrowserUtilities.waitFor(3);
+		logger.info("Sort by Monthly Payment");
+		mp.monthlyPaymentButton.click();
+		deleteBadCookies();
+		logger.info("Desired Monthly Payment");
+		//mp.desiredMonthlyPayment.clear();
+		//mp.desiredMonthlyPayment.sendKeys("400");
+		Actions action = new Actions(driver);
+		//action.moveToElement(mp.desiredMonthlyPaymentSlider).perform();
+		js.executeScript("window.scrollBy(0,500)");
+		deleteBadCookies();
+		action.clickAndHold(mp.desiredMonthlyPaymentSlider).perform();
+		action.moveByOffset(-100, 0).perform();
+		action.release().perform();
+		BrowserUtilities.waitFor(3);
+		assertEquals(mp.desiredMonthlyPayment.getAttribute("value"), "400");
+		logger.info("Down Payment");
+		//mp.downPayment.clear();
+		//mp.downPayment.sendKeys("5000");
+		action.moveToElement(mp.downPaymentSlider).perform();
+		action.clickAndHold(mp.downPaymentSlider).perform();
+		action.moveByOffset(52, 0).perform();
+		action.release().perform();
+		BrowserUtilities.waitFor(2);
+		assertEquals(mp.downPayment.getAttribute("value"), "5,000");
+		deleteBadCookies();
+		js.executeScript("window.scrollBy(0,150)");
+		BrowserUtilities.waitFor(3);
+		logger.info("Credit score");
+		mp.creditScore.click();
+		driver.findElement(By.xpath("//*[@class='monthly-payment']/div[3]/div[1]//li[2]")).click();
+		BrowserUtilities.waitFor(2);
+		driver.findElement(By.xpath("//*[@class='monthly-payment']/div[3]/div[1]//span")).isEnabled();
+		assertEquals(driver.findElement(By.xpath("//*[@class='monthly-payment']/div[3]/div[1]//span")).getText(), "very good");
+		logger.info("Terms");
+		mp.terms.click();
+		driver.findElement(By.xpath("//*[@class='monthly-payment']/div[4]/div[1]//li[2]")).click();
+		BrowserUtilities.waitFor(2);
+		assertEquals(driver.findElement(By.xpath("//*[@class='monthly-payment']/div[4]/div[1]//span/span")).getText(), "60 month");
+		//driver.findElement(By.xpath("//*[@id='PriceFilter']//button[.='APPLY']")).click();
+		BrowserUtilities.waitFor(2);
+		driver.findElement(By.xpath("//*[@id=\"PriceFilter\"]/div[3]/div/div/div[2]/div[2]/div/div[5]/button[1]")).click();	
+		BrowserUtilities.waitFor(4);
+		
+		/*
+		// Validate that the monthly payment values are below 400$	
+		List<String> carLinks = new ArrayList<>();
+		//get links
+		for(int i=1; i<8; i++) {
+			if (i!=5) {
+			carLinks.add(driver.findElement(By.xpath("//*[@id='cars-listing']/div[1]/article["+i+"]//p[2]")).getText());
+			}
+		}
+		Integer[] mothlyPayment = new Integer[7];
+		//get links monthly payment values
+		for (int i=0; i<carLinks.size();i++) {
+			carLinks.set(i, carLinks.get(i).substring(1, 4));
+			mothlyPayment[i] = Integer.valueOf(carLinks.get(i));
+		}
+		Arrays.sort(mothlyPayment);
+		//validation	
+		assertTrue(monthlyPaymentValidation(mothlyPayment)); 
+		*/
+	}
+	
+	public boolean monthlyPaymentValidation(Integer[] mothlyPayment) {
+		if (mothlyPayment[mothlyPayment.length-1] <= 400) {
+			return true;
+		} else {
+			return false;
+		} 
+	}
+	
+	
+	@Test (enabled = false) 
+	public void resetSearchWithMonthlyPaymentFilter() {
+		logger = reporter.createTest("Reset button");
+		MainPage mp = new MainPage();
+		SearchWithMonthlyPaymentFilter();
+		mp.resetButton.click();
+		BrowserUtilities.waitFor(2);
+		assertEquals(mp.searchResultsHeader.getText(), "Used Lexus for Sale");
+		driver.manage().deleteAllCookies();
+	}
+	
+	@Test (enabled = false) 
+	public void SearchWithSortByLowestPrice() {
+		logger = reporter.createTest("Search with applying Sort By (drop-down): Lowest Price");
+		MainPage mp = new MainPage();
+		
+		logger.info("Entering car make and model");
+		mp.searchBox.sendKeys("Ford Mustang");
+		logger.info("Clicking on search button");
+		mp.searchButton.click();
+
+		if (mp.locationConformPopUp.isEnabled()) {
+			mp.locationConformPopUp.click();
+		}
+		deleteBadCookies();
+		
+		logger.info("Sort By Lowest Price");
+		mp.sortBy.click();
+		BrowserUtilities.waitFor(2);
+			
+		Actions builder = new Actions(driver);
+		builder.moveToElement(driver.findElement(By.xpath("//button[.='Lowest price']"))).click().perform();
+		BrowserUtilities.waitFor(5);
+
+		logger.info("Verifying that cars got filtered");
+		List<String> carLinks = new ArrayList<>();
+		//Compare mileage of first 6 search result
+		for(int i=1; i<10; i++) {
+			if (i!=5) {
+			carLinks.add(driver.findElement(By.xpath("//*[@id='cars-listing']/div[1]/article["+i+"]//div[2]/p[1]//span[1]")).getText());
+			}
+		}
+		Integer[] value = new Integer[8];
+		for (int i=0; i<carLinks.size();i++) {
+			carLinks.set(i, carLinks.get(i).substring(1,3).concat(carLinks.get(i).substring(4,7)));
+			value[i] = Integer.valueOf(carLinks.get(i));
+		}
+		System.out.println(carLinks);
+		assertTrue(isSortedAscending(value));
+		driver.manage().deleteAllCookies();
 	}
 }

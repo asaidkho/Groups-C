@@ -45,6 +45,8 @@ public abstract class BasePage {
 	@FindBy(linkText="Saved Searches")
 	public WebElement savedSearchesButton;
 	
+	@FindBy(xpath="//*[@id='search-results-header']//h1")
+	public WebElement searchResultsHeader;
 	
 	
 	
