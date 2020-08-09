@@ -438,7 +438,7 @@ public class Search extends TestBase {
 	}
 	
 	
-	@Test (enabled = false) 
+	@Test 
 	public void resetSearchWithMonthlyPaymentFilter() {
 		logger = reporter.createTest("Reset button");
 		MainPage mp = new MainPage();
