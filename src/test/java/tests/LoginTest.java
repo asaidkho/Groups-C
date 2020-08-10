@@ -22,7 +22,7 @@ public class LoginTest extends TestBase{
 	}
 
 	
-	@Test
+	@Test(groups="sprint1")
 	public void loginTest1() {
 		logger = reporter.createTest("Login Test 1");
 		
@@ -39,25 +39,7 @@ public class LoginTest extends TestBase{
 	}
 	
 	
-	//@Test
-	public void justCheckingSomething() {
-		
-		driver = Driver.getDriver();
-		driver.navigate().to("https://www.carmax.com/cars?search=toyota+camry");
-		deleteBadCookies();
-		
-		MainPage mp = new MainPage();
-		if (mp.locationConformPopUp.isEnabled()) {
-			mp.locationConformPopUp.click();
-		}
-		
-		driver.findElement(By.xpath("//div[@class='options--sort']//"
-				+ "button[@class='kmx-menu-button kmx-button kmx-button--tertiary']")).click();
-		
-		driver.findElement(By.xpath("//button[.='Lowest mileage']")).click();
-		
-		BrowserUtilities.waitFor(5);
-	}
+	
 	
 	
 	

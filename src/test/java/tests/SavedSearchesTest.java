@@ -22,7 +22,7 @@ public class SavedSearchesTest extends TestBase{
 		lp.login();			
 	}
 	
-	@Test(groups="smoke2")
+	@Test(groups={"smoke2", "sprint2"})
 	public void saveSearchTest() {
 		logger = reporter.createTest("Save Search Test");
 		SavedSearchesPage ssp = new SavedSearchesPage();
@@ -60,7 +60,7 @@ public class SavedSearchesTest extends TestBase{
 		
 	}
 	
-	@Test
+	@Test(groups = "sprint2")
 	public void savedSeachDeleteTest() {
 		logger = reporter.createTest("Testing Delete feature of Saved Search");
 		

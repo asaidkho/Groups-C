@@ -38,7 +38,7 @@ public class SpecificCarTest extends TestBase {
 		sp.carLinks.get(0).click();
 	}
 	
-	@Test
+	@Test(groups = "sprint2")
 	public void saveCarTest() {		
 		
 		logger = reporter.createTest("Testing Saving car in a specific car page");
@@ -78,7 +78,7 @@ public class SpecificCarTest extends TestBase {
 		
 	}
 	
-	@Test(groups="smoke2")
+	@Test(groups={"smoke2", "sprint2"})
 	public void move360Test() throws IOException {
 		SpecificCarPage scp = new SpecificCarPage();
 		
@@ -109,7 +109,7 @@ public class SpecificCarTest extends TestBase {
 		
 	}
 	
-	@Test
+	@Test(groups = "sprint2")
 	public void slideButtonTest() throws IOException {
 		
 		SpecificCarPage scp = new SpecificCarPage();
