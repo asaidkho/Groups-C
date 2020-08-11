@@ -10,10 +10,8 @@ import pages.SearchFiltersPage;
 
 public class SearchWithFilters extends TestBase {
 
-	
-	
 	@Test
-	public void SearchByMake() {
+	public void SearchByMakeResultTest() {
 		logger = reporter.createTest("Search by Make from given Filters Menu");
 		MainPage mp = new MainPage();
 
@@ -32,6 +30,41 @@ public class SearchWithFilters extends TestBase {
 		assertEquals(driver.findElement(By.xpath("//*[@id='number-of-matches']/span[2]")).getText(), "281");
 
 	}
+	@Test 
+	public void sumOfResultsTest() {
+	
+}
+	
+	@Test 
+	public void SortByNewestYearTest() {
+	
+		
+		
+}
 	
 	
+	
+	
+	@Test 
+	public void facebookLinkTest() {
+	
+		
+		
+}
+	
+	
+	
+	@Test 
+	public void sorByHighestMilageTest() {
+	
+}
+	@Test 
+	public void sortByHighestPriceTets() {
+	
+}
+	
+	@Test
+	
+	public void productPageTest() {
+	}
 }
