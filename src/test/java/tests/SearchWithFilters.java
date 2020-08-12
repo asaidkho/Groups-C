@@ -167,8 +167,8 @@ public class SearchWithFilters extends TestBase {
 		sp.sortBy.click();
 		
 		Actions a = new Actions(driver);
-		a.moveToElement(sp.highestMilage).click().build().perform();
-		//a.moveToElement(driver.findElement(By.xpath("//button[.='higestMilage']"))).click().perform();
+		//a.moveToElement(sp.highestMilage).click().build().perform();
+		a.moveToElement(driver.findElement(By.xpath("//button[.='higestMilage']"))).click().perform();
 		BrowserUtilities.waitFor(3);
 		deleteBadCookies();
 		logger.info("Get results for Highest Milage and verify they are in descending order");
