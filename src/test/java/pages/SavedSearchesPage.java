@@ -14,7 +14,7 @@ public class SavedSearchesPage extends BasePage{
 	@FindBy(css = "div.kmx-icon-bar button")
 	public List<WebElement> deleteSearchButtons;
 	
-	@FindBy(xpath = "(//span[.='Get Updates'])")
+	@FindBy(xpath = "(//span[contains(text(), 'Update')])")
 	public List<WebElement> getUpdatesLink;
 	
 	@FindBy(id = "radio-0")

@@ -23,7 +23,7 @@ public class SellPageFormTest extends TestBase {
 		deleteBadCookies();
 	}
 	
-	@Test(dataProvider="years", groups= {"sprint3", "smoke3"})
+	@Test(dataProvider="years", groups= {"sprint3"})
 	public void sellMyCarEnterYearTest(String year) {
 		logger = reporter.createTest("Test Sell my Car Form");
 		

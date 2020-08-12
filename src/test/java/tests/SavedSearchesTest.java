@@ -105,7 +105,7 @@ public class SavedSearchesTest extends TestBase{
 		
 	}
 	
-	@Test(groups = "sprint3")
+	@Test(groups = {"sprint3", "smoke3"})
 	public void getUpdatesTest() {
 		
 		logger = reporter.createTest("Test Email Alerts Update on Saved Searches");

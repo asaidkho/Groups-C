@@ -20,7 +20,7 @@ import utilities.Driver;
 public class ProfileUpdateTest extends TestBase{
 	
 	
-	@BeforeMethod
+	@BeforeMethod(alwaysRun=true)
 	public void setUpMethod2() {
 		deleteBadCookies();
 		LoginPage lp = new LoginPage();
@@ -34,7 +34,7 @@ public class ProfileUpdateTest extends TestBase{
 		deleteBadCookies();
 	}
 	
-	@Test(dataProvider = "addresses", groups = "sprint3")
+	@Test(dataProvider = "addresses", groups = {"sprint3", "smoke3"})
 	public void EditProfileTest(String street, String city, String state, String zip) {
 		logger = reporter.createTest("Test Profile editting feature");
 		

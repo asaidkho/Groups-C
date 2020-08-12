@@ -100,6 +100,7 @@ public abstract class TestBase {
 		Driver.getDriver().manage().deleteCookieNamed("ai_user");
 		Driver.getDriver().manage().deleteCookieNamed("ai_session");		
 		Driver.getDriver().manage().deleteCookieNamed("ak_bmsc");
+		Driver.getDriver().manage().deleteCookieNamed("cto_bundle");
 		
 		try {
 			
