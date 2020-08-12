@@ -16,7 +16,7 @@ public class WarrantyTest extends TestBase {
 		actions.moveToElement(wp.moreMenuLink).click().moveToElement(wp.warrantyLink).click().build().perform();		
 	}
 	
-	@Test
+	@Test(groups = "sprint1")
 	public void test1() {
 		logger = reporter.createTest("Testing Warranty Calculator");
 		

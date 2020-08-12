@@ -23,7 +23,7 @@ public class SavedCarsTest extends TestBase{
 		lp.login();			
 	}
 	
-	@Test
+	@Test(groups = "sprint1")
 	public void saveCarTest() {
 		logger = reporter.createTest("Save Car Test");
 		SavedCarsPage scp = new SavedCarsPage();
@@ -64,7 +64,7 @@ public class SavedCarsTest extends TestBase{
 		
 	}
 	
-	@Test
+	@Test(groups = "sprint2")
 	public void savedCarDeleteTest() {
 		logger = reporter.createTest("Testing Delete feature of Saved Cars");
 		
@@ -102,7 +102,7 @@ public class SavedCarsTest extends TestBase{
 		
 	}
 	
-	@Test
+	@Test(groups="sprint2")
 	public void sortByPriceTest() {
 		
 		logger = reporter.createTest("Testing Sort by Price in Asceding");
@@ -132,5 +132,33 @@ public class SavedCarsTest extends TestBase{
 			assertTrue(p<=carPrice);
 			p = carPrice;
 		}
+	}
+	
+	@Test(groups = "sprint3")
+	public void sortDropdownOffTest() {
+		
+		logger = reporter.createTest("Test on/off drop down by Sort Button");
+		
+		deleteBadCookies();
+		
+		SavedCarsPage scp = new SavedCarsPage();
+		logger.info("Navigating to the Saved Cars Page by clicking on right Menu link");
+		
+		scp.profileButton.click();
+		scp.savedCarsButton.click();
+		
+		BrowserUtilities.waitFor(1);
+		deleteBadCookies();
+		
+		scp.sortButton.click();
+		BrowserUtilities.waitFor(1);
+		
+		assertTrue(scp.sortPriceAsc.isDisplayed());
+		
+		scp.sortButton.click();
+		BrowserUtilities.waitFor(1);
+		
+		assertTrue(!scp.sortPriceAsc.isDisplayed());
+		
 	}
 }

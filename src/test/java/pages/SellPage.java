@@ -18,6 +18,9 @@ public class SellPage extends BasePage{
 	@FindBy(id="widget-make__select")
 	public WebElement selectMake;
 	
+	@FindBy(id="widget-make__text")
+	public WebElement textBoxMake;
+	
 	@FindBy(id="widget-model__select")
 	public WebElement selectModel;
 	

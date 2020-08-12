@@ -1,6 +1,7 @@
 package tests;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
 
@@ -22,7 +23,7 @@ public class LoginTest extends TestBase{
 	}
 
 	
-	@Test
+	@Test(groups="sprint1")
 	public void loginTest1() {
 		logger = reporter.createTest("Login Test 1");
 		
@@ -38,25 +39,24 @@ public class LoginTest extends TestBase{
 		assertEquals(Driver.getDriver().getTitle(), "Saved Cars | MyCarMax");		
 	}
 	
-	
-	//@Test
-	public void justCheckingSomething() {
+	@Test(groups="sprint3")
+	public void logoutTest() {
 		
-		driver = Driver.getDriver();
-		driver.navigate().to("https://www.carmax.com/cars?search=toyota+camry");
+		logger = reporter.createTest("Login Test 1");
 		deleteBadCookies();
+		logger.info("Logging in..");
+		LoginPage lp = new LoginPage();
+		lp.login();	
 		
-		MainPage mp = new MainPage();
-		if (mp.locationConformPopUp.isEnabled()) {
-			mp.locationConformPopUp.click();
-		}
+		deleteBadCookies();
+		lp.profileButton.click();
+		lp.logoutButton.click();
 		
-		driver.findElement(By.xpath("//div[@class='options--sort']//"
-				+ "button[@class='kmx-menu-button kmx-button kmx-button--tertiary']")).click();
+		BrowserUtilities.waitFor(1);
 		
-		driver.findElement(By.xpath("//button[.='Lowest mileage']")).click();
+		lp.profileButton.click();
 		
-		BrowserUtilities.waitFor(5);
+		assertTrue(lp.signInButton.isDisplayed());
 	}
 	
 	

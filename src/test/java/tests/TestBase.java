@@ -45,9 +45,6 @@ public abstract class TestBase {
 		reporter.setSystemInfo("ENV", ConfigReader.getProperty("environment"));
 		reporter.setSystemInfo("OS", System.getProperty("os.name"));
 		reporter.setSystemInfo("browser", ConfigReader.getProperty("browser"));
-
-
-
 	}
 
 	@BeforeMethod(alwaysRun = true)
