@@ -39,8 +39,14 @@ public abstract class BasePage {
 	@FindBy(linkText="Sign In")
 	public WebElement signInButton;
 	
+	@FindBy(linkText="My Profile")
+	public WebElement myProfileButton;
+	
 	@FindBy(linkText="Saved Cars")
 	public WebElement savedCarsButton;
+	
+	@FindBy(linkText="Sign Out")
+	public WebElement logoutButton;
 	
 	@FindBy(linkText="Saved Searches")
 	public WebElement savedSearchesButton;

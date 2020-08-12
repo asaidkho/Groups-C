@@ -1,6 +1,7 @@
 package tests;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
 
@@ -38,8 +39,25 @@ public class LoginTest extends TestBase{
 		assertEquals(Driver.getDriver().getTitle(), "Saved Cars | MyCarMax");		
 	}
 	
-	
-	
+	@Test(groups="sprint3")
+	public void logoutTest() {
+		
+		logger = reporter.createTest("Login Test 1");
+		deleteBadCookies();
+		logger.info("Logging in..");
+		LoginPage lp = new LoginPage();
+		lp.login();	
+		
+		deleteBadCookies();
+		lp.profileButton.click();
+		lp.logoutButton.click();
+		
+		BrowserUtilities.waitFor(1);
+		
+		lp.profileButton.click();
+		
+		assertTrue(lp.signInButton.isDisplayed());
+	}
 	
 	
 	
