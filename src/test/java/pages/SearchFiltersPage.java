@@ -48,6 +48,9 @@ public class SearchFiltersPage extends BasePage {
         @FindBy (xpath = "//article[3]//h3/span")
         public WebElement Car;
         
+        //HIghest Milage
+        @FindBy (xpath = "//button[.='Highest milage']")
+        public WebElement highestMilage;
         
       //SocialMedia
         @FindBy (xpath = "//*[@id='footer']//section[1]/a[2]")
