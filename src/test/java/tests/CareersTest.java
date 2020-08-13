@@ -10,7 +10,7 @@ import utilities.BrowserUtilities;
 
 public class CareersTest extends TestBase {
 	
-	@Test
+	@Test (groups="smokeA")
 	public void searchForJob() {
 		logger = reporter.createTest("Search for a job on Careers carmax.com");
 		CareersPage cp = new CareersPage();

@@ -222,7 +222,7 @@ public class Search extends TestBase {
 	
 	//TODO Sprint 2: new test cases
 
-	@Test //(groups = "smoke2", enabled = false)
+	@Test (groups = "smoke2", enabled = false)
 	public void SearchWithSortByLowesMiliage() {
 		logger = reporter.createTest("Search with applying Sort By (drop-down): Lowest Mileage");
 		MainPage mp = new MainPage();
@@ -438,7 +438,7 @@ public class Search extends TestBase {
 	}
 	
 	
-	@Test 
+	@Test (enabled = false)
 	public void resetSearchWithMonthlyPaymentFilter() {
 		logger = reporter.createTest("Reset button");
 		MainPage mp = new MainPage();
@@ -493,7 +493,7 @@ public class Search extends TestBase {
 	
 	//TODO Sprint 3: new test cases
 	
-	@Test (enabled = false) //(groups = "smoke3")
+	@Test (groups="smokeA")//(enabled = false) //(groups = "smoke3")
 	public void SearchWithRecommendedFiltersNumber() {
 		logger = reporter.createTest("Search with applying Recommended Filters - validate the search result list number of cars equal the number Recommended Filters model selection");
 		MainPage mp = new MainPage();
@@ -502,23 +502,22 @@ public class Search extends TestBase {
 		mp.searchBox.sendKeys("Land Rover");
 		logger.info("Clicking on search button");
 		mp.searchButton.click();
-
+		BrowserUtilities.waitFor(1);
 		if (mp.locationConformPopUp.isEnabled()) {
 			mp.locationConformPopUp.click();
 		}
 		deleteBadCookies();
 		
 		logger.info("Select 'Discovery Sport' in the list of Recommended Filters");
-		String expected = driver.findElement(By.xpath("//*[@id='recommended-refinements']//a[contains(.,'Discovery Sport')]/span")).getText();
-		driver.findElement(By.cssSelector("#recommended-refinements > div.smooth-carousel > div > div > a:nth-child(3)")).click();
-		//driver.findElement(By.xpath("//*[@id='recommended-refinements']//a[contains(.,'Discovery Sport')]")).click();
+		String expected = driver.findElement(By.xpath("//*[@id='recommended-refinements']/div[2]//a[contains(.,'Discovery Sport')]/span")).getText();
+		driver.findElement(By.xpath("//*[@id='recommended-refinements']/div[2]//a[contains(.,'Discovery Sport')]")).click();
 		BrowserUtilities.waitFor(2);
-		String actual = mp.numberOfMatches.getText();
+		String actual = "("+ mp.numberOfMatches.getText() +")";
 		assertEquals(expected, actual);
 		driver.manage().deleteAllCookies();
 	}
 	
-	@Test (enabled = false)
+	@Test (groups="smokeA")//(enabled = false)
 	public void SearchWithRecommendedFiltersModel() {
 		logger = reporter.createTest("Search with applying Recommended Filters - validate the search result list of cars contains only the selected model");
 		MainPage mp = new MainPage();
@@ -527,14 +526,14 @@ public class Search extends TestBase {
 		mp.searchBox.sendKeys("Dodge");
 		logger.info("Clicking on search button");
 		mp.searchButton.click();
-
+		BrowserUtilities.waitFor(1);
 		if (mp.locationConformPopUp.isEnabled()) {
 			mp.locationConformPopUp.click();
 		}
 		deleteBadCookies();
 		
 		logger.info("Select 'Challenger' in the list of Recommended Filters");
-		driver.findElement(By.cssSelector("#recommended-refinements > div.smooth-carousel > div > div > a:nth-child(3)")).click();
+		driver.findElement(By.xpath("//*[@id='recommended-refinements']/div[2]//a[contains(.,'Challenger')]")).click();
 		BrowserUtilities.waitFor(3);
 
 		for (int i=1; i<= Integer.parseInt(mp.numberOfMatches.getText()); i++) {
@@ -546,7 +545,7 @@ public class Search extends TestBase {
 		driver.manage().deleteAllCookies();
 	}
 	
-	@Test (enabled = false) //(groups = "smoke3")
+	@Test (groups="smokeA")//(enabled = false) //(groups = "smoke3")
 	public void SearchWithYearFilterSlider() {
 		logger = reporter.createTest("Search with applying with years range using the slider from Year Filter drop-down");
 		MainPage mp = new MainPage();
@@ -555,7 +554,7 @@ public class Search extends TestBase {
 		mp.searchBox.sendKeys("Honda Pilot");
 		logger.info("Clicking on search button");
 		mp.searchButton.click();
-
+		BrowserUtilities.waitFor(1);
 		if (mp.locationConformPopUp.isEnabled()) {
 			mp.locationConformPopUp.click();
 		}
@@ -576,7 +575,8 @@ public class Search extends TestBase {
 		driver.manage().deleteAllCookies();
 	}
 	
-	@Test (enabled = false)
+	/**Note: test cases is not stable since the number for the type changes with delay on the web-site*/
+	@Test (enabled = false)//(groups="smokeA")//(enabled = false)
 	public void SearchWithTypeFilter() {
 		logger = reporter.createTest("Search with applying with Type Filter drop-down and validate number of matches");
 		MainPage mp = new MainPage();
@@ -585,7 +585,7 @@ public class Search extends TestBase {
 		mp.searchBox.sendKeys("Infiniti");
 		logger.info("Clicking on search button");
 		mp.searchButton.click();
-
+		BrowserUtilities.waitFor(1);
 		if (mp.locationConformPopUp.isEnabled()) {
 			mp.locationConformPopUp.click();
 		}
@@ -600,7 +600,8 @@ public class Search extends TestBase {
 		js.executeScript("window.scrollBy(0,250)");
 		BrowserUtilities.waitFor(2);
 		logger.info("Select SUVs type");
-		String expected = driver.findElement(By.xpath("//*[@id='Types']//div[6]//span")).getText();
+		//String expected = driver.findElement(By.xpath("//*[@id='Types']//div[.='SUVs']//span")).getText();
+		String expected = driver.findElement(By.xpath("//*[@id='Types']//div[5]//div[2]")).getText();   // hardcoded - not flexible
 		driver.findElement(By.xpath("//*[@id='Types']//div[.='SUVs']")).click();
 		BrowserUtilities.waitFor(2);
 		String actual = "(" + mp.numberOfMatches.getText() + ")";
@@ -611,7 +612,8 @@ public class Search extends TestBase {
 		driver.manage().deleteAllCookies();
 	}
 	
-	@Test (enabled = false)
+	/** The slider moves different in Opera  browser giving the 35000, but good for Chrome and Edge*/
+	@Test (enabled = false)//(groups="smokeA")//(enabled = false)
 	public void SearchWithMileageFilterSlider() {
 		logger = reporter.createTest("Search with applying mileage range limit using the slider from Mileage Filter drop-down");
 		MainPage mp = new MainPage();
@@ -633,6 +635,7 @@ public class Search extends TestBase {
 		logger.info("Select the miles range limit using the slider");
 		Actions action = new Actions(driver);
 		action.clickAndHold(mp.mileageFilterSlider).moveByOffset(-160, 0).release().build().perform();
+		BrowserUtilities.waitFor(2);
 		assertEquals(mp.mileageFilterSlider.getAttribute("aria-valuenow"), "30000");
 		
 		assertEquals(driver.findElement(By.xpath("//*[@class='selected-refinements']//button[3]")).getText(), "Miles: Under 30K");
@@ -640,6 +643,7 @@ public class Search extends TestBase {
 		driver.manage().deleteAllCookies();
 	}
 	
+	/**good for Edge and opera*/
 	@Test (enabled = false)
 	public void SearchWithSeeCarsAtThisStoreAndCompare() {
 		logger = reporter.createTest("Search with 'SEE CARS AT THIS STORE', select mmake and model, and compare search results");
@@ -649,18 +653,17 @@ public class Search extends TestBase {
 		mp.headerMyStore.click();
 		logger.info("Click on 'SEE CARS AT THIS STORE'");
 		mp.seeCarsAtThisStore.click();
-		
-		if (mp.locationConformPopUp2.isEnabled()) {
-			mp.locationConformPopUp2.click();
+		BrowserUtilities.waitFor(1);
+		if (mp.locationConformPopUp.isEnabled()) {
+			mp.locationConformPopUp.click();
 		}
 		deleteBadCookies();
 		
 		logger.info("Select car make in the Recommended Filters list");
 		driver.findElement(By.xpath("//*[@id='recommended-refinements']//div[2]//a[contains(text(),'Ford')]")).click();
-		//driver.findElement(By.xpath("//*[@id='recommended-refinements']//div[2]//a[3]")).click();
 		BrowserUtilities.waitFor(2);
 		assertTrue(mp.searchResultHeader.getText().contains("Ford"));
-
+		BrowserUtilities.waitFor(1);
 		if (mp.locationConformPopUp2.isEnabled()) {
 			mp.locationConformPopUp2.click();
 		}
@@ -668,17 +671,22 @@ public class Search extends TestBase {
 		 
 		logger.info("Scroll the Recommended Filters list by button");
 		mp.recommendedFiltersButtonToRight.click();
-		BrowserUtilities.waitFor(5);
+		BrowserUtilities.waitFor(3);
 		mp.recommendedFiltersButtonToRight.click();
-		BrowserUtilities.waitFor(4);
+		BrowserUtilities.waitFor(2);
 		deleteBadCookies();
 		logger.info("Select 'Automatic Transmission' in the Recommended Filters list");
 		driver.findElement(By.xpath("//*[@id='recommended-refinements']//div[2]//a[contains(text(),'Automatic Transmission')]")).click();
 		deleteBadCookies();
 		assertTrue(mp.searchResultHeader.getText().contains("Ford With Automatic Transmission"));
+		BrowserUtilities.waitFor(1);
+		if (mp.locationConformPopUp.isEnabled()) {
+			mp.locationConformPopUp.click();
+		} 
+		deleteBadCookies();
 		
 		logger.info("Select the model in the Recommended Filters list");
-		driver.findElement(By.xpath("//*[@id='recommended-refinements']//div[2]//a[contains(text(),'Edge')]")).click();
+		driver.findElement(By.xpath("//*[@id='recommended-refinements']//div[2]//a[contains(text(),'Edge')]")).click();	
 		assertTrue(mp.searchResultHeader.getText().contains("Ford Edge With Automatic Transmission"));
 		deleteBadCookies();
 		
