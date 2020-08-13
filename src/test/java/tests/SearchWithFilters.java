@@ -18,7 +18,7 @@ import utilities.Driver;
 
 public class SearchWithFilters extends TestBase {
 
-	@Test(enabled = false)
+	@Test(groups = "smokeG")
 	public void SearchByMakeResultTest() {
 		logger = reporter.createTest("Search by Make from given Filters Menu");
 		MainPage mp = new MainPage();
@@ -53,7 +53,7 @@ public class SearchWithFilters extends TestBase {
 		assertEquals(expected, actual);
 	}
 
-	@Test(enabled = false)
+	@Test(groups = "smokeG")
 	public void sumOfResultsTest() {
 		logger = reporter.createTest("Add two Makes for Search and test if sum of choosen cars matches result");
 		MainPage mp = new MainPage();
@@ -98,7 +98,7 @@ public class SearchWithFilters extends TestBase {
 
 	}
 
-	@Test(enabled = false)
+	@Test(groups = "smokeG")
 	public void SortByNewestYearTest() {
 		logger = reporter.createTest("Search Sort By Newest Year ");
 		MainPage mp = new MainPage();
@@ -131,7 +131,7 @@ public class SearchWithFilters extends TestBase {
 
 	}
 
-	@Test(enabled = false)
+	@Test(groups = "smokeG")
 	public void facebookLinkTest() {
 
 		logger = reporter.createTest("Validate Social Media Button - FaceBook link.");
@@ -154,7 +154,7 @@ public class SearchWithFilters extends TestBase {
 
 	}
 
-	@Test(enabled = false)
+	@Test(groups = "smokeG")
 	public void sortByHighestMilageTest() {
 
 		logger = reporter.createTest("Search Sort By Newest Year ");
@@ -210,7 +210,7 @@ public class SearchWithFilters extends TestBase {
 		return true;
 	}
 
-	@Test // (enabled= false)
+	@Test(groups = "smokeG")
 
 	public void productPageTest() {
         logger = reporter.createTest("Test if product name matches name in product page");
@@ -238,9 +238,9 @@ public class SearchWithFilters extends TestBase {
 
 		System.out.println(driver.findElement(By.xpath("//*[@class='price-mileage__car-title']//span[1]")).getText());
 		// String actual = driver.findElement(By.xpath("//*[@class='price-mileage__car-title']//span[1]")).getText();
-		 assertEquals(expected,driver.findElement(By.xpath("//*[@class='price-mileage__car-title']//span[1]")).getText());
+		 //assertEquals(expected,driver.findElement(By.xpath("//*[@class='price-mileage__car-title']//span[1]")).getText());
 
 		//assertTrue(expected.contains(driver.findElement(By.xpath("//*[@class='price-mileage__car-title']//span[1]")).getText()));
-      // assertTrue(driver.findElement(By.xpath("//*[@class='price-mileage__car-title']//span[1]")).getText().contains(expected));
+        assertTrue(driver.findElement(By.xpath("//*[@class='price-mileage__car-title']//span[1]")).getText().contains(expected));
 	}
 }
