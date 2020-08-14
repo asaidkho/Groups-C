@@ -23,7 +23,7 @@ public class LoginTest extends TestBase{
 	}
 
 	
-	@Test(groups="sprint1")
+	@Test(groups= {"sprint1", "smoke4"})
 	public void loginTest1() {
 		logger = reporter.createTest("Login Test 1");
 		

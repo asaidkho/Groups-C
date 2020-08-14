@@ -53,11 +53,19 @@ public class Driver {
 				drivers.set(new InternetExplorerDriver());
 				break;
 				
+//			case "headlessChrome":
+//				WebDriverManager.chromedriver().setup();
+//				ChromeOptions options = new ChromeOptions();
+//				options.addArguments("--headless");
+//				options.addArguments("--disable-gpu");
+//				drivers.set(new ChromeDriver(options));
+//				break;
+				
 			case "headlessChrome":
-				WebDriverManager.chromedriver().setup();
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--headless");
-				options.addArguments("--disable-gpu");
+				options.addArguments("--disable-gpu"); // -> extra setting required for Windows machines
+				WebDriverManager.chromedriver().setup();
 				drivers.set(new ChromeDriver(options));
 				break;
 			
