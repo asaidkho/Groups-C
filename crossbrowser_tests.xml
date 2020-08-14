@@ -44,7 +44,7 @@
   
  
   <test thread-count="5" name="Test4">    
-    <parameter name="browser" value="headlessChrome"/> 
+    <parameter name="browser" value="headlessFirefox"/> 
     <groups>
     <run>    
     <include name="smoke3"></include>    
