@@ -3,7 +3,7 @@
 <suite name="Suite" parallel="tests" thread-count="4">
 
   
-  <test thread-count="5" name="Test">  
+  <!--  <test thread-count="5" name="Test">  
   	<parameter name="browser" value="chrome"/> 
     <groups>
     <run>    
@@ -27,10 +27,11 @@
 	<packages>   
     <package name=".*"></package>       
     </packages>
-  </test>
-    
-  <test thread-count="5" name="Test3">    
-    <parameter name="browser" value="edge"/> 
+  </test>-->
+  
+  
+   <test thread-count="5" name="Test4">    
+    <parameter name="browser" value="headlessFirefox"/> 
     <groups>
     <run>    
     <include name="smokeG"></include>    
@@ -41,6 +42,19 @@
     <package name=".*"></package>       
     </packages>
   </test>
+    
+ <!--  <test thread-count="5" name="Test3">    
+    <parameter name="browser" value="edge"/> 
+    <groups>
+    <run>    
+    <include name="smokeG"></include>    
+    </run>    
+    </groups>
+
+	<packages>   
+    <package name=".*"></package>       
+    </packages>
+  </test>-->
   
   
 </suite> <!-- Suite -->

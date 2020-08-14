@@ -18,7 +18,7 @@ import utilities.Driver;
 
 public class SearchWithFilters extends TestBase {
 
-	@Test(groups = "smokeG")
+	@Test(groups = "crossbrowser_tests")
 	public void SearchByMakeResultTest() {
 		logger = reporter.createTest("Search by Make from given Filters Menu");
 		MainPage mp = new MainPage();
@@ -36,11 +36,11 @@ public class SearchWithFilters extends TestBase {
 		logger.info("Select the distance radius - Nationwide");
 		sp.Nationwide.click();
 
-		BrowserUtilities.waitFor(3);
+		BrowserUtilities.waitFor(5);
 		sp.make.click();
 		logger.info("Clicking on Audi button from Make");
 		sp.Audi.click();
-		BrowserUtilities.waitFor(3);
+		BrowserUtilities.waitFor(5);
 		deleteBadCookies();
 
 		logger.info("Verify number  of choosen Make matche Result");
@@ -71,9 +71,9 @@ public class SearchWithFilters extends TestBase {
 		logger.info("Select the distance radius - Nationwide");
 		sp.Nationwide.click();
 
-		BrowserUtilities.waitFor(3);
+		BrowserUtilities.waitFor(4);
 		sp.make.click();
-		BrowserUtilities.waitFor(2);
+		BrowserUtilities.waitFor(4);
 		logger.info("Clicking on Audi button from Make");
 		sp.Audi.click();
 		BrowserUtilities.waitFor(3);
@@ -84,7 +84,7 @@ public class SearchWithFilters extends TestBase {
 		logger.info("Adding another Make to Filter");
 		sp.Acura.click();
 
-		BrowserUtilities.waitFor(3);
+		BrowserUtilities.waitFor(5);
 		String secondMake = (driver.findElement(By.xpath("//*[@id='Make']//ul/li[1]//span[2]")).getText());
 
 		int acuraNum = Integer.parseInt(secondMake.substring(1, secondMake.length() - 1));
@@ -118,7 +118,7 @@ public class SearchWithFilters extends TestBase {
 		a.moveToElement(sp.newestYear).click().build().perform();
 		// a.moveToElement(driver.findElement(By.xpath("//button[.='Newest
 		// year']"))).click().perform();
-		BrowserUtilities.waitFor(3);
+		BrowserUtilities.waitFor(5);
 		deleteBadCookies();
 		logger.info("Verify that results are filtered by newest year");
 		List<String> carLinks = new ArrayList<>();
@@ -131,7 +131,7 @@ public class SearchWithFilters extends TestBase {
 
 	}
 
-	@Test(groups = "smokeG")
+	@Test(groups = "crossbrowser_tests")
 	public void facebookLinkTest() {
 
 		logger = reporter.createTest("Validate Social Media Button - FaceBook link.");
@@ -144,7 +144,7 @@ public class SearchWithFilters extends TestBase {
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)", "");
 
 		String expected = driver.findElement(By.xpath("//*[@id='footer']//section[1]/a[2]")).getAttribute("href");
-		BrowserUtilities.waitFor(3);
+		BrowserUtilities.waitFor(5);
 		SearchFiltersPage sp = new SearchFiltersPage();
 		logger.info("Click social media icon.");
 
@@ -177,7 +177,7 @@ public class SearchWithFilters extends TestBase {
 		Actions a = new Actions(driver);
 		// a.moveToElement(sp.highestMilage).click().build().perform();
 		a.moveToElement(driver.findElement(By.xpath("//button[.='Highest mileage']"))).click().perform();
-		BrowserUtilities.waitFor(3);
+		BrowserUtilities.waitFor(5);
 		deleteBadCookies();
 		logger.info("Get results for Highest Milage and verify they are in descending order");
 
@@ -210,7 +210,7 @@ public class SearchWithFilters extends TestBase {
 		return true;
 	}
 
-	@Test(groups = "smokeG")
+	@Test(groups = "crossbrowser_tests")
 
 	public void productPageTest() {
         logger = reporter.createTest("Test if product name matches name in product page");
@@ -222,7 +222,7 @@ public class SearchWithFilters extends TestBase {
 		logger.info("Clicking on search button");
 		mp.searchButton.click();
 
-		BrowserUtilities.waitFor(3);
+		BrowserUtilities.waitFor(5);
 		if (mp.locationConformPopUp.isEnabled()) {
 			mp.locationConformPopUp.click();
 		}
@@ -234,7 +234,7 @@ public class SearchWithFilters extends TestBase {
 		String expected = driver.findElement(By.xpath("//article[3]//h3/span[2]")).getText();
 
 		sp.Car.click();
-		BrowserUtilities.waitFor(3);
+		BrowserUtilities.waitFor(5);
 
 		System.out.println(driver.findElement(By.xpath("//*[@class='price-mileage__car-title']//span[1]")).getText());
 		// String actual = driver.findElement(By.xpath("//*[@class='price-mileage__car-title']//span[1]")).getText();
