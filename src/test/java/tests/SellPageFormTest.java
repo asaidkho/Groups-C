@@ -47,7 +47,7 @@ public class SellPageFormTest extends TestBase {
 		}			
 	}
 	
-	@Test(groups = {"sprint3", "smoke3"})
+	@Test(groups = {"sprint3"})
 	public void selectModelAppearenceTest() {
 		logger = reporter.createTest("Test Appearance of Models select form");
 		
