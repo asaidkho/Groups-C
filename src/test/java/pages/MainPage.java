@@ -13,20 +13,22 @@ public class MainPage extends BasePage {
 		//@FindBy (xpath = "//*[@id=\"zip\"]")
 		public WebElement zipCode;
 		
-		//@FindBy (className = "kmx-menu-button kmx-button kmx-button--tertiary")
-		//@FindBy (className = "//*[@id=\"search-bar-form\"]/div/div[2]/div[2]/div/button/span")
-		@FindBy (css = "#search-bar-form > div > div.search-bar--fields-wrapper > div.search-bar--form-field.radius > div > button")
+		@FindBy (className = "//*[@class='search-bar--form-field radius']//button/span")
+		//@FindBy (css = "#search-bar-form > div > div.search-bar--fields-wrapper > div.search-bar--form-field.radius > div > button")
 		public WebElement distanceRadiusDropdown;
 		
 		@FindBy (xpath = "/html/body/div[4]/div/div/div[1]")
 		//@FindBy (className = "location-confirm-modal--close--7vQCO")
 		public WebElement locationConformPopUp;
 		
+		@FindBy (xpath = "//*[@class='ReactModal__Content ReactModal__Content--after-open modal--content location-confirm-modal--modal--3Z9Dl']/div[1]")
+		public WebElement locationConformPopUp2;
+		
 		//@FindBy (xpath = "//[@class='kmx-list']//ul//li[2]")  //back to this to not hardcode
 		@FindBy (xpath = "//*[@id=\"search-bar-form\"]/div/div[2]/div[2]/div/div/div/ul/li[3]")
 		public WebElement distanceRadius;
 		
-		@FindBy (xpath = "//*[@id=\"search-bar-form\"]/div/div[2]/div[2]/div/div/div/ul/li[9]/button")
+		@FindBy (xpath = "//*[@id='search-bar-form']//ul/li[9]/button")
 		public WebElement distanceRadiusNationwide;
 		
 		@FindBy (xpath = "//*[@id=\"recommended-refinements\"]/div[2]/div/div")
@@ -36,7 +38,7 @@ public class MainPage extends BasePage {
 		@FindBy (xpath = "//*[@id=\"recommended-refinements\"]/div[2]/div/div/a[6]")
 		public WebElement ToyotaFilters;
 		
-		@FindBy (xpath = "//*[@id=\"YearFilter\"]/div[2]")
+		@FindBy (xpath = "//*[@id='YearFilter']/div[2]")
 		public WebElement Year;
 		
 		@FindBy (xpath = "//*[@id=\"YearFilter\"]/div[3]/div/div[1]/div/div[1]/div[2]/div[1]/input")
@@ -46,7 +48,7 @@ public class MainPage extends BasePage {
 		public WebElement yearTo;
 		
 		//@FindBy (xpath = "/html/body/main/div[1]/div/section/div/div[1]/div[1]/h1")
-		@FindBy (xpath = "//*[@id='title']")
+		@FindBy (xpath = "//*[@id='title']/h1")
 		public WebElement searchResultHeader;
 		
 		@FindBy (xpath = "//*[@id=\"ExteriorColor\"]/div[2]")
@@ -109,4 +111,36 @@ public class MainPage extends BasePage {
 		
 		@FindBy(xpath = "//*[@id=\"PriceFilter\"]/div[3]/div/div/div[2]/div[2]/div/div[5]/button[2]")
 		public WebElement resetButton;
+		
+		@FindBy (xpath = "//*[@id='number-of-matches']/span[2]")
+		public WebElement numberOfMatches;
+		
+		@FindBy (id = "YearFilter")
+		public WebElement yearFilter;
+		
+		@FindBy (xpath = "//*[@class='rc-slider']/div[4]")
+		public WebElement yearScrollRight;
+		
+		@FindBy (xpath = "//*[@class='rc-slider']/div[5]")
+		public WebElement yearScrollLeft;
+		
+		@FindBy (id = "Types")
+		public WebElement typeFilter;
+		
+		@FindBy (id = "MileageFilter")
+		public WebElement mileageFilter;
+		
+		@FindBy (xpath = "//*[@class='mileagefilter']//div[4]")
+		public WebElement mileageFilterSlider;
+		
+		@FindBy (id = "header-my-store-button")
+		public WebElement headerMyStore;
+		
+		@FindBy (xpath = "//*[@id='header-my-store-menu']//a[.='See cars at this store']")
+		public WebElement seeCarsAtThisStore;
+		
+		//@FindBy (xpath = "//button[@class='smooth-carousel__button smooth-carousel__button--right']")
+		@FindBy (xpath = "//*[@id=\"recommended-refinements\"]/div[2]/button[2]")
+		public WebElement recommendedFiltersButtonToRight;
+		
 }
