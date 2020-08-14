@@ -18,7 +18,7 @@ import utilities.Driver;
 
 public class SearchWithFilters extends TestBase {
 
-	@Test//(groups = "smoke3")
+	@Test
 	public void SearchByMakeResultTest() {
 		logger = reporter.createTest("Search by Make from given Filters Menu");
 		MainPage mp = new MainPage();
@@ -211,7 +211,7 @@ public class SearchWithFilters extends TestBase {
 		return true;
 	}
 
-	@Test(groups = "crossbrowser_tests")
+	@Test
 
 	public void productPageTest() {
         logger = reporter.createTest("Test if product name matches name in product page");
