@@ -493,7 +493,7 @@ public class Search extends TestBase {
 	
 	//TODO Sprint 3: new test cases
 	
-	@Test (groups="smokeA")//(enabled = false) //(groups = "smoke3")
+	@Test (groups="smoke3")//(enabled = false) //(groups = "smoke3")
 	public void SearchWithRecommendedFiltersNumber() {
 		logger = reporter.createTest("Search with applying Recommended Filters - validate the search result list number of cars equal the number Recommended Filters model selection");
 		MainPage mp = new MainPage();
@@ -545,7 +545,7 @@ public class Search extends TestBase {
 		driver.manage().deleteAllCookies();
 	}
 	
-	@Test (groups="smokeA")//(enabled = false) //(groups = "smoke3")
+	@Test (groups="smoke3")//(enabled = false) //(groups = "smoke3")
 	public void SearchWithYearFilterSlider() {
 		logger = reporter.createTest("Search with applying with years range using the slider from Year Filter drop-down");
 		MainPage mp = new MainPage();

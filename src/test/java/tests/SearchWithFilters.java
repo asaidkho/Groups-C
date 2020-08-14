@@ -18,7 +18,7 @@ import utilities.Driver;
 
 public class SearchWithFilters extends TestBase {
 
-	@Test(groups = "crossbrowser_tests")
+	@Test//(groups = "smoke3")
 	public void SearchByMakeResultTest() {
 		logger = reporter.createTest("Search by Make from given Filters Menu");
 		MainPage mp = new MainPage();
@@ -38,6 +38,7 @@ public class SearchWithFilters extends TestBase {
 
 		BrowserUtilities.waitFor(5);
 		sp.make.click();
+		BrowserUtilities.waitFor(3);
 		logger.info("Clicking on Audi button from Make");
 		sp.Audi.click();
 		BrowserUtilities.waitFor(5);
@@ -131,7 +132,7 @@ public class SearchWithFilters extends TestBase {
 
 	}
 
-	@Test(groups = "crossbrowser_tests")
+	@Test(groups = "smoke3")
 	public void facebookLinkTest() {
 
 		logger = reporter.createTest("Validate Social Media Button - FaceBook link.");
@@ -154,7 +155,7 @@ public class SearchWithFilters extends TestBase {
 
 	}
 
-	@Test(groups = "smokeG")
+	@Test(groups = "smoke3")
 	public void sortByHighestMilageTest() {
 
 		logger = reporter.createTest("Search Sort By Newest Year ");

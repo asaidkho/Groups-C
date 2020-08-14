@@ -24,3 +24,9 @@
 [0813/031109.789:ERROR:prune_crash_reports.cc(35)] PruneCrashReportDatabase: Failed to get pending reports
 [0813/031159.227:ERROR:prune_crash_reports.cc(35)] PruneCrashReportDatabase: Failed to get pending reports
 [0813/031256.905:ERROR:prune_crash_reports.cc(35)] PruneCrashReportDatabase: Failed to get pending reports
+[0813/211140.417:ERROR:process_reader_win.cc(155)] SuspendThread: Access is denied. (0x5)
+[0813/211140.420:ERROR:exception_snapshot_win.cc(99)] thread ID 40908 not found in process
+[0813/211140.420:ERROR:process_memory_win.cc(73)] ReadMemory at 0x77b59fdc80 of 16 bytes failed: Only part of a ReadProcessMemory or WriteProcessMemory request was completed. (0x12B)
+[0813/211140.420:ERROR:exception_snapshot_win.cc(210)] EXCEPTION_POINTERS read failed
+[0813/211140.420:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)
+[0813/212653.092:ERROR:file_io.cc(134)] WriteFile: The pipe is being closed. (0xE8)
