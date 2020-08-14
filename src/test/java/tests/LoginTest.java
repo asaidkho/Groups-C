@@ -42,7 +42,7 @@ public class LoginTest extends TestBase{
 	@Test(groups="sprint3")
 	public void logoutTest() {
 		
-		logger = reporter.createTest("Login Test 1");
+		logger = reporter.createTest("Test of Logout Functionality");
 		deleteBadCookies();
 		logger.info("Logging in..");
 		LoginPage lp = new LoginPage();
