@@ -51,23 +51,25 @@ public abstract class TestBase {
 	@Parameters ("browser")
 	public void setUpMethod(@Optional String browser) {
 
+		
 		driver = Driver.getDriver(browser);
 		actions = new Actions(driver);
-
-
-
-		driver.get(ConfigReader.getProperty("url"));
-		deleteBadCookies();	
-
-		driver.manage().timeouts().implicitlyWait(Integer.parseInt(
-				ConfigReader.getProperty("implicitwait")), TimeUnit.SECONDS);
-
-
+		driver.manage().timeouts().implicitlyWait(
+				Long.parseLong(ConfigReader.getProperty("implicitWait")), TimeUnit.SECONDS);
 		driver.manage().window().maximize();
+		driver.get(ConfigReader.getProperty("url"));
+		
+		//driver = Driver.getDriver(browser);
+		
+		//driver.get(ConfigReader.getProperty("url"));
+		//driver.manage().timeouts().implicitlyWait(()
+				//ConfigReader.getProperty("implicitwait")), TimeUnit.SECONDS);
 
+		//driver.manage().timeouts().implicitlyWait(Integer.parseInt(
+				//ConfigReader.getProperty("implicitwait")), TimeUnit.SECONDS);
+	//	driver.manage().window().maximize();
 
 	}
-
 
 
 	@AfterMethod(alwaysRun = true)
@@ -95,44 +97,9 @@ public abstract class TestBase {
 		reporter.flush();
 	}
 	
-	public static void deleteBadCookies() {
-		
-		Driver.getDriver().manage().deleteCookieNamed("ai_user");
-		Driver.getDriver().manage().deleteCookieNamed("ai_session");		
-		Driver.getDriver().manage().deleteCookieNamed("ak_bmsc");
-		Driver.getDriver().manage().deleteCookieNamed("cto_bundle");
-		
-		try {
-			
-			File file = new File("Cookies.data");
-			file.createNewFile();
-			BufferedWriter bufWriter = new BufferedWriter(new FileWriter(file));
-			
-			List<String> goodCookies = Arrays.asList("bm_sv", "_abck", "RT",	"s_visit", "bm_mi", "KmxStore", 
-					"_gat_6144a510cabc4cd086ae55f1e2df5ad8", "KmxAuthSession", "bm_sz", "mbox", 
-					"KmxCurrSession_0", "QSI_HistorySession", "_uetvid", "fs_uid", "AKA_A2", "_uetsid", 
-					"s_cc", "_fbp", "at_check", "AMCV_0C1038B35278345B0A490D4C%40AdobeOrg", 
-					"s_sq", "KmxMyKmx_0", "KmxVisitor_0", "s_ppv", "s_ppvl", "_gid", "adobeTransID", 
-					"gpv_v4", "KmxSession_0", "_ga", "_gcl_au", "AMCVS_0C1038B35278345B0A490D4C%40AdobeOrg");
-			
-			
-			for (Cookie ck: Driver.getDriver().manage().getCookies()) {
-				if (!goodCookies.contains(ck.getName())) {
-					bufWriter.write(ck.getName() + " -- " + ck.getValue());
-					bufWriter.newLine();
-					System.out.print("\"" + ck.getName() + "\", ");
-					System.out.println("");
-				}
-			}
-			bufWriter.close();
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+	
 	}
 
 
-}
+
 

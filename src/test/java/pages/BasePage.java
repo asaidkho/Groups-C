@@ -6,54 +6,45 @@ import org.openqa.selenium.support.PageFactory;
 
 import utilities.Driver;
 
-public abstract class BasePage {
+public class BasePage {
 	
 	public BasePage() {
-		PageFactory.initElements(Driver.getDriver(), this);
+		PageFactory.initElements(Driver.getDriver(), 
+				this);
 	}
 	
-	@FindBy(id="header-mobile-drawer-focus-start")
-	public WebElement shopLink;
-	
-	@FindBy(linkText="Sell")
-	public WebElement sellLink;
-	
-	@FindBy(linkText="Finance")
-	public WebElement financeLink;
-	
-	@FindBy(id="header-inventory-search")
+	@FindBy (id = "twotabsearchtextbox" )
 	public WebElement searchBox;
-	
-	@FindBy(id="header-search-button")
-	public WebElement searchButton;
-	
-	@FindBy(xpath="//span[.='More']")
-	public WebElement moreMenuLink;
-	
-	@FindBy(xpath="//a[@href='/car-buying-process/maxcare-service-plans']")
-	public WebElement warrantyLink;
-	
-	@FindBy(id="header-my-profile-button")
-	public WebElement profileButton;
-	
-	@FindBy(linkText="Sign In")
-	public WebElement signInButton;
-	
-	@FindBy(linkText="My Profile")
-	public WebElement myProfileButton;
-	
-	@FindBy(linkText="Saved Cars")
-	public WebElement savedCarsButton;
-	
-	@FindBy(linkText="Sign Out")
-	public WebElement logoutButton;
-	
-	@FindBy(linkText="Saved Searches")
-	public WebElement savedSearchesButton;
-	
-	@FindBy(xpath="//*[@id='search-results-header']//h1")
-	public WebElement searchResultsHeader;
-	
-	
+ 	
+   @FindBy (xpath ="//*[@id='nav-xshop']/a[7]")
+	public WebElement books;
+ 	
+ 	@FindBy (id="nav-search-submit-button")
+ 	public WebElement searchButton;
+ 	
+ 	
+ 	@FindBy(xpath= "//*[@id=\"search\"]/div[1]/div[2]/div/span[3]/div[2]/div[1]/div/span/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div[1]/h2/a/span")
+    public WebElement firstResult;
+    
+    @FindBy(xpath="//*[@id=\"search\"]/div[1]/div[2]/div/span[3]/div[2]/div[1]/div/span/div/div/div/div/div[2]/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/div")
+    public WebElement priceOnResultsPage;
+    
+    @FindBy(id="newBuyBoxPrice")
+    public WebElement priceOnProductPage;
+    
+    @FindBy (id="add-to-cart-button")
+    public WebElement addToCart;
+    		
+  
+    @FindBy (xpath = "//*[@id=\"hlb-subcart\"]/div[1]/span/span[2]")	
+    public WebElement priceOnCheckoutPage;
+    				
+    @FindBy(id="hlb-ptc-btn")
+    public WebElement checkOutButton;
+
+
 	
 }
+
+	
+

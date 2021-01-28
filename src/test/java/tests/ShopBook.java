@@ -1,33 +1,70 @@
 package tests;
 
+
+
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 
-import pages.CareersPage;
+import com.aventstack.extentreports.ExtentTest;
+
+import pages.BasePage;
 import utilities.BrowserUtilities;
 
-public class CareersTest extends TestBase {
+public class ShopBook extends TestBase {
 	
-	@Test (groups="smokeA")
-	public void searchForJob() {
-		logger = reporter.createTest("Search for a job on Careers carmax.com");
-		CareersPage cp = new CareersPage();
+	@Test
+	public void shopBook() {
 		
-		logger.info("Locate an click 'Search Jobs' link under Careers");
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight)", "");
+		logger = reporter.createTest("Search for Books");
+		BasePage bp = new BasePage();
+		
+		//BrowserUtilities.waitFor(3);
+		logger.info("Click books and search for given book");
 		BrowserUtilities.waitFor(3);
-		cp.searchJobsLink.click();
-		deleteBadCookies();
+		bp.books.click();
+		BrowserUtilities.waitFor(3);
+		bp.searchBox.click();
 		
-		logger.info("Enter job to search and location and click 'Search' button");
-		cp.jobFilterTextField.sendKeys("QA Engeener");
-		cp.locationEntryField.sendKeys("20850");
-		cp.searchJobButton.click();
+		BrowserUtilities.waitFor(3);
+		logger.info("Enter given book name");
+		BrowserUtilities.waitFor(3);
+		bp.searchBox.sendKeys("qa testing for beginner"+ Keys.ENTER);
 		
-		logger.info("Validate");
-		assertEquals(cp.showingResultsForjobTitle.getText(), "QA Engeener");
+		
+		
+		String price1 = bp.priceOnResultsPage.getText().replace("\n", ".");
+		System.out.println("1  " +   price1);
+		
+		
+		logger.info("Click on first result");
+		BrowserUtilities.waitFor(3);
+		bp.firstResult.click();
+		
+		String price2 = bp.priceOnProductPage.getText().replace("\n", "");
+		System.out.println("2  "+ price2);
+		
+		logger.info("Validate Results page price with Product Page Price");
+		BrowserUtilities.waitFor(3);
+		assertEquals(price1, price2);
+		
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, 100)");
+		BrowserUtilities.waitFor(3);
+		
+		logger.info("Add to the cart");
+		bp.addToCart.click();
+		BrowserUtilities.waitFor(3);
+		
+		String price3 = bp.priceOnCheckoutPage.getText();
+		System.out.println("3  " +   price3);
+		logger.info("Validate Product Page Price with Checkout Page Price");
+		BrowserUtilities.waitFor(3);
+		assertEquals(price2, price3);
+		
+		
 	}
 }
