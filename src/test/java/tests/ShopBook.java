@@ -18,7 +18,7 @@ public class ShopBook extends TestBase {
 	@Test
 	public void shopBook() {
 		
-		logger = reporter.createTest("Search for Books");
+		logger = reporter.createTest("Search for Books on Amazon");
 		BasePage bp = new BasePage();
 		
 		//BrowserUtilities.waitFor(3);
